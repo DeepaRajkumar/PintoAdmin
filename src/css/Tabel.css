@@ -1,0 +1,11 @@
+table {
+    table-layout: fixed;
+    width: 100%;
+  }
+  th, td {
+    word-wrap: break-word;
+    white-space: nowrap; /* Prevent long content from breaking rows */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Optional: Adds "..." for long text */
+  }
+  
