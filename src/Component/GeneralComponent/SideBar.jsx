@@ -1,7 +1,7 @@
 import { Squares2X2Icon, DocumentTextIcon,BuildingStorefrontIcon,LifebuoyIcon,FireIcon,ChartBarSquareIcon,ChartBarIcon,SpeakerWaveIcon,MapIcon,ChatBubbleLeftRightIcon,UserGroupIcon } from '@heroicons/react/24/outline'; // Import icons
 import { ChevronDownIcon } from '@heroicons/react/24/solid'; // For dropdown arrows
 import { useState } from 'react'; 
-import "../../css/sideBar.css"
+import "../../css/SideBar.css"
 
 function SideBar() {
   const [isOrdersOpen, setIsOrdersOpen] = useState(false);
