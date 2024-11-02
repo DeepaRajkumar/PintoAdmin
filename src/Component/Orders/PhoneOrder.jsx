@@ -1,30 +1,12 @@
 import React, {useState} from 'react';
 import Sidebar from '../GeneralComponent/SideBar.jsx';
-import Header from '../GeneralComponent/HeaderBar.jsx';
+import Tail from '../GeneralComponent/HeaderBar.jsx';
 import OrderStats from '../GeneralComponent/RoundedStatus.jsx';
 import Search from './Search.jsx';
 import Table from '../GeneralComponent/Tabel.jsx';
 import OrderDetail from './OrderDetails.jsx'; 
-import { StarIcon as OutlineStarIcon } from '@heroicons/react/24/outline'; 
-import "../../css/order.css"
-const StarRating = ({ rating = 0 }) => {
-  const maxRating = 5;
-  const validatedRating = Math.max(0, Math.min(rating, maxRating)); // Ensure rating is between 0 and 5
 
-  return (
-    <div className="flex">
-      {/* Generate filled stars based on the validated rating */}
-      {Array.from({ length: validatedRating }).map((_, index) => (
-        <StarIcon key={index} className="w-5 h-5 text-yellow-500" />
-      ))}
-      {/* Generate outline stars for the remaining unfilled stars */}
-      {Array.from({ length: maxRating - validatedRating }).map((_, index) => (
-        <OutlineStarIcon key={index} className="w-5 h-5 text-gray-300" />
-      ))}
-    </div>
-  );
-};
-function Order() { 
+function PhoneOrder() { 
 
 
 const statusColors = {
@@ -93,19 +75,7 @@ const orders = [
     amount: "₹750 NET BANKING",
     partnerId: "#123456",
     customer: "Ajay Kumar",
-  },
-  {
-    date: "12/09/2024 15:00 hr",
-    orderId: "#123456",
-    type: "Chat",
-    restaurant: "Thalapakkatti",
-    phone: "9988776655",
-    menu: "Chicken burger, Pizza, Coke",
-    status: "Cancelled",
-    amount: "₹750 NET BANKING",
-    partnerId: "#123456",
-    customer: "Ajay Kumar",
-  } 
+  }
 
 
 
@@ -141,15 +111,14 @@ const orderssingle =
 const headers = [
   "Date | Time",
   "Order ID",
-  "Type",
-  "Restaurant",
-  "Phone",
+  "Order By",
   "Menu",
-  "Status",
+  "Customer",
+  "Phone",
   "Amount",
+  "Status",
   "Partner ID",
-  "Customer", 
-  "Review"
+  "Customer"
 ] 
 const [selectedOrder, setSelectedOrder] = useState(null);
 
@@ -200,8 +169,7 @@ const data = orders.map((order, index) => (
     </td>
     <td className="px-3 py-4 text-sm text-gray-800">{order.amount}</td>
     <td className="px-3 py-4 text-sm text-gray-800">{order.partnerId}</td>
-    <td className="px-3 py-4 text-sm text-gray-800">{order.customer}</td> 
-    <td clasName="px-3 py-4 text-sm text-gray-800"> <StarRating  /></td>
+    <td className="px-3 py-4 text-sm text-gray-800">{order.customer}</td>
   </tr>
 )) 
 
@@ -227,47 +195,56 @@ const data = orders.map((order, index) => (
   ];
  
   return (
-    <div className="grid grid-cols-[auto,1fr] h-screen bg-gray-100">
-    <Sidebar />
-    <div className=" overflow-hidden" >
-      <Header name={"Orders"} />
+    <div className="flex  bg-gray-100 ">
+      <Sidebar />
       <div >
-        <div  >
-          <div className="flex justify-evenly mt-4 ">
-            {stats.map((stat, index) => (
-              <OrderStats
-                border={stat.border}
-                key={index}
-                color={stat.color}
-                value={stat.value}
-                label={stat.label}
-                subLabel={stat.subLabel}
-                status={stat.change}
-              />
-            ))}
-          </div>
-          <Search />
-          <div className=" ml-6">
-            <Table headers={headers} data={data} />
-          </div>
-          {selectedOrder && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
-              <div className="relative bg-white rounded-lg shadow-lg w-[90%] lg:w-[70%] xl:w-[60%] max-w-6xl p-6">
-                <button
-                  onClick={closeModal}
-                  className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
-                >
-                  ✕
-                </button>
-                <OrderDetail />
-              </div>
+        <Tail name={"Orders"} />
+        <div className="">
+          <div className="p-4">
+            <div className="flex space-x-12 mb-2">
+              {stats.map((stat, index) => (
+                <OrderStats
+                  border={stat.border}
+                  key={index}
+                  color={stat.color}
+                  value={stat.value}
+                  label={stat.label}
+                  subLabel={stat.subLabel}
+                  status={stat.change}
+                />
+              ))}
             </div>
-          )}
+            <Search />
+            <div className=" overflow-x-auto" >
+              <Table 
+              headers={headers}
+              data={data} 
+              />
+            </div> 
+            {
+  selectedOrder && (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
+      {/* Modal Content */}
+      <div className="relative bg-white rounded-lg shadow-lg w-[90%] lg:w-[70%] xl:w-[60%] max-w-6xl p-6">
+        {/* Close Button */}
+        <button
+          onClick={closeModal}
+          className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+        >
+          ✕
+        </button>
+         {console.log("deeoaosdfasdo")}
+        {/* Render the modal component dynamically */}
+        <OrderDetail/>
+      </div>
+    </div>
+  )
+}
+          </div>
         </div>
       </div>
     </div>
-  </div>
   );
 }
 
-export default Order;
+export default PhoneOrder;

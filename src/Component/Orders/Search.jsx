@@ -13,9 +13,9 @@ const DashboardFilters = () => {
   };
 
   return (
-    <div className="flex items-center justify-between py-4 px-2 space-x-4">
+    <div className="flex  justify-between ml-6 py-4 px-2 ">
       {/* All Restaurants Dropdown */} 
-      <div className="relative">
+      <div className="relative pr-28">
         <input
           type="text"
           placeholder="Search Order Id,Hotel,Phone"
@@ -39,12 +39,12 @@ const DashboardFilters = () => {
 
        <div  className="flex justify-between gap-3">
       {/* Search Bar */}
-      <div className="relative">
+      {/* <div className="relative">
        
       <button className="border border-red-800 text-red-800 rounded-lg px-4 py-1 hover:bg-red-100">
       Create Custom Order
     </button>
-      </div>
+      </div> */}
 
       {/* Live Orders Dropdown */}
       <div className="relative inline-block">

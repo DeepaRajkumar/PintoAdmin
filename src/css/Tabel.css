@@ -1,11 +1,49 @@
+/* 
+.table-container { 
+ 
+  width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse; 
+  table-layout: auto;
+} */
+
+/* td, th {
+  padding: 8px;
+    text-align: left;
+    white-space: normal; 
+    overflow: visible; 
+   
+} */ 
+.thin-scrollbar::-webkit-scrollbar {
+  width: 6px; /* Adjust the width as needed */
+  height:6px;
+}
+
+
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #c9c4c4; /* Scrollbar thumb color */
+  border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+}
+
 table {
-    table-layout: fixed;
-    width: 100%;
-  }
-  th, td {
-    word-wrap: break-word;
-    white-space: nowrap; /* Prevent long content from breaking rows */
-    overflow: hidden;
-    text-overflow: ellipsis; /* Optional: Adds "..." for long text */
-  }
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  white-space: nowrap;
+}
+ 
+
+
   

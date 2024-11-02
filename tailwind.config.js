@@ -6,8 +6,8 @@ export default {
   ],
   theme: {
     extend: {
-      screens: {
-        'no-scroll': { 'raw': '(overflow: hidden)' },
+      minHeight: {
+        'screen-dvh': '100dvh',
       },
     },
   },
