@@ -1,11 +1,12 @@
 import React from "react";
-import { ChevronDownIcon } from '@heroicons/react/24/solid'
+import { ChevronDownIcon } from '@heroicons/react/24/solid' 
+
 function OrderDetail (){  
   console.log("deeepadfds")
     return(
-   <div className="container mx-auto">
+   <div className="container w-auto">
       {/* Header: Restaurant Information */}
-      <div className="flex justify-between items-start border-b pb-4 mb-4">
+      <div className="flex justify-between items-start border-b pb-2 ">
         <div>
           <h1 className="text-xl font-semibold">
             Zaitoon Multi Cuisine Restaurant, #12345
@@ -14,7 +15,7 @@ function OrderDetail (){
             2nd Street, Indira Nagar, Tambaram, Chennai - 06
           </p>
         </div>
-        <div className="text-right">
+        <div className="text-right pr-5 mt-2">
           <p className="text-sm text-gray-700 font-semibold">
             9944556677 | 9944556677
           </p>

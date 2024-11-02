@@ -39,8 +39,8 @@ const SideBar = () => {
     return (
       <div className="mb-4">
         <div 
-          className={`flex items-center justify-between cursor-pointer hover:bg-[#000044] rounded-lg p-2 ${
-            location.pathname === to ? 'bg-[#000044]' : ''
+          className={`flex items-center justify-between cursor-pointer hover:bg-[#2B2954] rounded-lg p-2 ${
+            location.pathname === to ? 'bg-[#2B2954]' : ''
           }`}
           onClick={() => hasSubmenu ? toggleMenu(menuKey) : null}
         >
@@ -89,8 +89,8 @@ const SideBar = () => {
       text: "Orders",
       menuKey: "orders",
       submenu: [
-        { text: "Manage order", to: "/orders" },
-        { text: "Phone orders" },
+        { text: "Manage order", to: "/orders/manage-orders" },
+        { text: "Phone orders", to: "/orders/phone-orders" },
         { text: "Order history" }
       ]
     },
@@ -142,9 +142,7 @@ const SideBar = () => {
 
   return (
     <div 
-      className={`p-6 ${
-        isExpanded ? 'w-64' : 'w-20'
-      } bg-[#000033] min-h-screen text-white transition-all duration-300`}
+      className={` p-4  bg-[#373656] min-h-screen text-white transition-all duration-300`}
     >
       <div 
         className="mb-6 ml-2 flex items-center cursor-pointer" 
@@ -153,7 +151,7 @@ const SideBar = () => {
         <img 
           src={Logo} 
           alt="Pinto Logo" 
-          className="h-5 w-5" 
+          className="h-8 w-8" 
         />
         {isExpanded && (
           <h1 className="ml-2 font-bold text-lg uppercase font-serif tracking-[0.5em]">
@@ -179,3 +177,4 @@ const SideBar = () => {
 };
 
 export default SideBar;
+// FF6B00

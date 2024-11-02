@@ -13,16 +13,16 @@ const DashboardFilters = () => {
   };
 
   return (
-    <div className="flex  justify-between ml-6 py-4 px-2 ">
+    <div className="flex  justify-between py-4 ">
       {/* All Restaurants Dropdown */} 
-      <div className="relative pr-28">
+      <div className="relative w-80">
         <input
           type="text"
           placeholder="Search Order Id,Hotel,Phone"
-          className="border border-gray-300 rounded-md px-1 py-1 pl-10 w-full focus:outline-none focus:ring-2 focus:ring-gray-300"
+          className="border border-gray-300 rounded-lg px-2 py-1 pl-10 w-full focus:outline-none focus:ring-2 focus:ring-gray-300"
         />
         <svg
-          className="w-4 h-4 absolute left-3 top-3 text-gray-400"
+          className="w-5 h-5 absolute left-3 top-2 text-gray-400"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

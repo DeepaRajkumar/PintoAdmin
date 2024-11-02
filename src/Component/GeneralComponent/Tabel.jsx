@@ -42,10 +42,10 @@ const Table = ({ headers = [], data = [], itemsPerPage = 10, modelName, modelcli
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="w-full overflow-scroll thin-scrollbar h-80">
+      <div className="w-full overflow-x-scroll thin-scrollbar">
         <table className="table-auto w-full">
           <thead className="sticky top-0">
-            <tr className="bg-blue-500">
+            <tr className="bg-[#F1F5F9]">
               {headers.map((heading, index) => (
                 <th
                   key={heading || index}
@@ -73,9 +73,12 @@ const Table = ({ headers = [], data = [], itemsPerPage = 10, modelName, modelcli
           </div>
         )} 
 
+      </div>
+
+    
           {/* Pagination Controls */}
-      {totalItems > 0 && (
-        <div className="flex items-center justify-between  bg-white">
+          {totalItems > 0 && (
+        <div className="flex items-center justify-between ">
           <div className="flex items-center gap-2">
             <span className="text-sm text-gray-700">Showing</span>
             <select
@@ -126,9 +129,6 @@ const Table = ({ headers = [], data = [], itemsPerPage = 10, modelName, modelcli
           </div>
         </div>
       )}
-      </div>
-
-    
     </div>
   );
 };

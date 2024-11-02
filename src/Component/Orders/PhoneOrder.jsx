@@ -5,7 +5,7 @@ import OrderStats from '../GeneralComponent/RoundedStatus.jsx';
 import Search from './Search.jsx';
 import Table from '../GeneralComponent/Tabel.jsx';
 import OrderDetail from './OrderDetails.jsx'; 
-
+import PhoneOrderForm from './PhoneOrderForm.jsx';
 function PhoneOrder() { 
 
 
@@ -195,13 +195,13 @@ const data = orders.map((order, index) => (
   ];
  
   return (
-    <div className="flex  bg-gray-100 ">
+    <div className="grid grid-cols-[auto,1fr] h-screen bg-gray-100 ">
       <Sidebar />
-      <div >
-        <Tail name={"Orders"} />
-        <div className="">
-          <div className="p-4">
-            <div className="flex space-x-12 mb-2">
+      <div className="overflow-auto" >
+        <Tail name={"Phone Order"} />
+        
+          <div >
+            <div className="flex justify-evenly mt-4">
               {stats.map((stat, index) => (
                 <OrderStats
                   border={stat.border}
@@ -214,34 +214,11 @@ const data = orders.map((order, index) => (
                 />
               ))}
             </div>
-            <Search />
-            <div className=" overflow-x-auto" >
-              <Table 
-              headers={headers}
-              data={data} 
-              />
-            </div> 
-            {
-  selectedOrder && (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
-      {/* Modal Content */}
-      <div className="relative bg-white rounded-lg shadow-lg w-[90%] lg:w-[70%] xl:w-[60%] max-w-6xl p-6">
-        {/* Close Button */}
-        <button
-          onClick={closeModal}
-          className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
-        >
-          ✕
-        </button>
-         {console.log("deeoaosdfasdo")}
-        {/* Render the modal component dynamically */}
-        <OrderDetail/>
-      </div>
-    </div>
-  )
-}
+            <PhoneOrderForm />
+           
+           
           </div>
-        </div>
+        
       </div>
     </div>
   );

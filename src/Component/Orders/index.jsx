@@ -210,9 +210,9 @@ const data = orders.map((order, index) => (
 
 
   const stats = [
-    { label: 'Live Orders', value: '50', change: '10% Increased', color: 'text-blue-600', border: 'border-blue-300' },
-    { label: 'Completed', value: '1.5k', change: '10% Decreased', color: 'text-green-600', border: 'border-green-300' },
-    { label: 'Cancelled', value: '05', change: '10% Decreased', color: 'text-red-600', border: 'border-red-300' },
+    { label: 'Live Orders', value: '50', change: '10% Increased', color: 'text-blue-600', border: 'border-blue-300', phonecount:'25' },
+    { label: 'Completed', value: '1.5k', change: '10% Decreased', color: 'text-green-600', border: 'border-green-300' , phonecount:'25'},
+    { label: 'Cancelled', value: '05', change: '10% Decreased', color: 'text-red-600', border: 'border-red-300' , phonecount:'25'},
     {
       id: 4,
       value: '10',
@@ -221,19 +221,20 @@ const data = orders.map((order, index) => (
       color: 'text-red-800',
       border: 'border-red-800',
       iconColor: 'text-purple-500'
+      , phonecount:'25'
     },
-    { label: 'Total Orders', value: '1052', subLabel: '01 - 07 Sep,24', color: 'text-indigo-600', border: 'border-indigo-300' },
-    { label: 'Order Ratio', value: '20', change: '10% Decreased', color: 'text-pink-600', border: 'border-pink-300' },
+    { label: 'Total Orders', value: '1052', subLabel: '01 - 07 Sep,24', color: 'text-indigo-600', border: 'border-indigo-300', phonecount:'25' },
+    { label: 'Order Ratio', value: '20', change: '10% Decreased', color: 'text-pink-600', border: 'border-pink-300' , phonecount:'25'},
   ];
  
   return (
     <div className="grid grid-cols-[auto,1fr] h-screen bg-gray-100">
     <Sidebar />
-    <div className=" overflow-hidden" >
+    <div className=" overflow-auto" >
       <Header name={"Orders"} />
-      <div >
-        <div  >
-          <div className="flex justify-evenly mt-4 ">
+     
+        <div className="p-4" >
+          <div className="flex justify-between  gap-6 mt-4 ">
             {stats.map((stat, index) => (
               <OrderStats
                 border={stat.border}
@@ -243,19 +244,20 @@ const data = orders.map((order, index) => (
                 label={stat.label}
                 subLabel={stat.subLabel}
                 status={stat.change}
+                phonecount ={stat.phonecount}
               />
             ))}
           </div>
           <Search />
-          <div className=" ml-6">
+          <div >
             <Table headers={headers} data={data} />
           </div>
           {selectedOrder && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
-              <div className="relative bg-white rounded-lg shadow-lg w-[90%] lg:w-[70%] xl:w-[60%] max-w-6xl p-6">
+              <div className="relative bg-white rounded-lg shadow-lg  p-6">
                 <button
                   onClick={closeModal}
-                  className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+                  className="absolute top-1 right-2 text-gray-600 hover:text-gray-900"
                 >
                   ✕
                 </button>
@@ -264,7 +266,7 @@ const data = orders.map((order, index) => (
             </div>
           )}
         </div>
-      </div>
+      
     </div>
   </div>
   );
