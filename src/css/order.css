@@ -1,19 +1,11 @@
-/* .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }  */
-  .thin-scrollbar::-webkit-scrollbar {
-    width: 6px; /* Adjust the width as needed */
-    height:6px;
-  }
-  
- 
-  
-  .thin-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #c9c4c4; /* Scrollbar thumb color */
-    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
-  }
+.window-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Adjust the width as needed */
+  height:8px;
+}
+
+
+
+.window-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #c9c4c4; /* Scrollbar thumb color */
+  border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+}

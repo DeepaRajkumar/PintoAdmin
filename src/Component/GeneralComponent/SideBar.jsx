@@ -16,8 +16,8 @@ import {
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import "../../css/SideBar.css" 
 import Logo from "../../assets/logo.png"
-const SideBar = () => {
-  const [isExpanded, setIsExpanded] = useState(true);
+const SideBar = ({isExpanded,setIsExpanded}) => {
+
   const [openMenus, setOpenMenus] = useState({
     orders: false,
     merchant: false,
@@ -35,9 +35,9 @@ const SideBar = () => {
 
   const MenuItem = ({ icon: Icon, text, to, submenu, menuKey }) => {
     const hasSubmenu = submenu && submenu.length > 0;
-    
+    console.log("giuygfffgjhgh",submenu)
     return (
-      <div className="mb-4">
+      <div className="relative mb-4">
         <div 
           className={`flex items-center justify-between cursor-pointer hover:bg-[#2B2954] rounded-lg p-2 ${
             location.pathname === to ? 'bg-[#2B2954]' : ''
@@ -51,21 +51,47 @@ const SideBar = () => {
                 {to ? <Link to={to}>{text}</Link> : text}
               </span>
             )}
-          </div>
+          </div> 
+          {hasSubmenu && openMenus[menuKey] && !isExpanded && (
+        <div className="absolute left-full top-0 bg-[#ffffff] w-40 rounded-lg shadow-lg z-50 ml-4">
+          <ul className="py-2">
+            {submenu.map((item, index) => (
+              <li 
+                key={index}
+                className="text-black hover:text-white cursor-pointer"
+              >
+                {item.to ? (
+                  <Link to={item.to} className="block w-full px-4 py-2 hover:bg-orange-500 rounded-lg">
+                    {item.text}
+                  </Link>
+                ) : (
+                  <span className="block w-full px-4 py-2 hover:bg-orange-500 rounded-lg">
+                    {item.text}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
           {hasSubmenu && isExpanded && (
             <ChevronDownIcon 
-              className={`h-4 w-4 transform transition-transform duration-200 ${
-                openMenus[menuKey] ? 'rotate-180' : ''
-              }`} 
+              className={`h-4 w-4 transform transition-transform duration-200  
+                // ${openMenus[menuKey] ? 'rotate-180' : ''}
+                `} 
             />
           )}
         </div>
         {hasSubmenu && isExpanded && openMenus[menuKey] && (
-          <ul className="ml-8 mt-2 space-y-2">
+          <ul className={`${
+            isExpanded 
+              ? openMenus[menuKey] ? "ml-8 mt-2 space-y-2" : "ml-8 mt-2 space-y-2"
+              : "absolute left-full top-0 bg-[#373656] w-48 py-2 invisible group-hover:visible"
+          }`}>
             {submenu.map((item, index) => (
               <li 
                 key={index}
-                className="text-gray-300 hover:text-white cursor-pointer"
+                className="text-gray-300 hover:text-white cursor-pointer hover:bg-[#FF6B00] rounded-lg px-2 py-1"
               >
                 {item.to ? (
                   <Link to={item.to}>{item.text}</Link>
@@ -73,7 +99,9 @@ const SideBar = () => {
               </li>
             ))}
           </ul>
-        )}
+        )} 
+          
+      
       </div>
     );
   };
@@ -82,7 +110,8 @@ const SideBar = () => {
     { 
       icon: Squares2X2Icon, 
       text: "Dashboard", 
-      to: "/" 
+      to: "/",
+      menuKey: "dashboard"
     },
     {
       icon: DocumentTextIcon,
@@ -116,36 +145,45 @@ const SideBar = () => {
     { 
       icon: FireIcon, 
       text: "Menu",
-      menuKey: "menu"
+      menuKey: "menu",
+      submenu: [
+        { text: "Menu Item 1" },
+        { text: "Menu Item 2" }
+      ]
     },
     { 
       icon: ChartBarSquareIcon, 
-      text: "Analytics & Report" 
+      text: "Analytics & Report",
+      menuKey: "analytics"
     },
     { 
       icon: SpeakerWaveIcon, 
-      text: "Marketing" 
+      text: "Marketing",
+      menuKey: "marketing"
     },
     { 
       icon: ChartBarIcon, 
-      text: "Finance" 
+      text: "Finance",
+      menuKey: "finance"
     },
     { 
       icon: UserGroupIcon, 
-      text: "Staffs" 
+      text: "Staffs",
+      menuKey: "staffs"
     },
     { 
       icon: ChatBubbleLeftRightIcon, 
-      text: "Chat & Support" 
+      text: "Chat & Support",
+      menuKey: "chat"
     }
-  ];
+];
 
   return (
     <div 
       className={` p-4  bg-[#373656] min-h-screen text-white transition-all duration-300`}
     >
       <div 
-        className="mb-6 ml-2 flex items-center cursor-pointer" 
+        className="mb-6 ml-1 flex items-center cursor-pointer" 
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <img 
@@ -177,4 +215,3 @@ const SideBar = () => {
 };
 
 export default SideBar;
-// FF6B00

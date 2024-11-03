@@ -1,24 +1,4 @@
-/* 
-.table-container { 
- 
-  width: 100%;
-  overflow-x: auto;
-  display: block;
-}
 
-table{
-  width: 100%;
-  border-collapse: collapse; 
-  table-layout: auto;
-} */
-
-/* td, th {
-  padding: 8px;
-    text-align: left;
-    white-space: normal; 
-    overflow: visible; 
-   
-} */ 
 .thin-scrollbar::-webkit-scrollbar {
   width: 6px; /* Adjust the width as needed */
   height:6px;
@@ -35,7 +15,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-  border: 1px solid #ddd;
+
 }
 
 th, td {

@@ -44,7 +44,7 @@ const Table = ({ headers = [], data = [], itemsPerPage = 10, modelName, modelcli
     <div className="flex flex-col gap-4">
       <div className="w-full overflow-x-scroll thin-scrollbar">
         <table className="table-auto w-full">
-          <thead className="sticky top-0">
+          <thead className="sticky top-0 border border-gray-300">
             <tr className="bg-[#F1F5F9]">
               {headers.map((heading, index) => (
                 <th

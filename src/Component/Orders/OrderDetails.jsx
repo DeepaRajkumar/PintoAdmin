@@ -6,7 +6,7 @@ function OrderDetail (){
     return(
    <div className="container w-auto">
       {/* Header: Restaurant Information */}
-      <div className="flex justify-between items-start border-b pb-2 ">
+      <div className="flex justify-between items-start  pb-2 ">
         <div>
           <h1 className="text-xl font-semibold">
             Zaitoon Multi Cuisine Restaurant, #12345
@@ -78,19 +78,19 @@ function OrderDetail (){
               </thead>
               <tbody>
                 <tr>
-                  <td className="py-2 text-gray-700">
+                  <td className="py-2 text-gray-700 text-wrap">
                     Chicken biryani boneless, serves 1-2
                   </td>
                   <td className="py-1">₹249</td>
                   <td className="py-2 text-yellow-500">★★★★★</td>
                 </tr>
                 <tr>
-                  <td className="py-2 text-gray-700">Mayonese 50gm</td>
+                  <td className="py-2 text-gray-700 ">Mayonese 50gm</td>
                   <td className="py-2">₹29</td>
                   <td className="py-2 text-yellow-500">★★★★★</td>
                 </tr>
                 <tr>
-                  <td className="py-2 text-gray-700">
+                  <td className="py-2 text-gray-700 text-wrap">
                     Chicken biryani boneless, serves 1-2
                   </td>
                   <td className="py-2">₹249</td>
@@ -116,7 +116,7 @@ function OrderDetail (){
             <div className="flex justify-between  p-2 ">
                <div>
                <h3 className="font-semibold mb-2">Delivery Address</h3>
-                <p className="text-gray-700">2nd Street, Indira Nagar, Tambaram, Chennai - 06</p>
+                <p className="text-gray-700 text-wrap">2nd Street, Indira Nagar, Tambaram, Chennai - 06</p>
                 <a href="#" className="text-blue-600 text-sm">Show in map</a>
 
                </div>

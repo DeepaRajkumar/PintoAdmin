@@ -22,7 +22,7 @@ const HeaderBar = (props) => {
       <Cog8ToothIcon className="h-6 w-6 text-gray-600 cursor-pointer" />
       <div className="w-6 h-6 rounded-full overflow-hidden border">
         <img
-          src="/path/to/user-image.jpg" // Replace with the actual path to the user image
+          src="https://engineering.unl.edu/images/staff/Kayla-Person.jpg" // Replace with the actual path to the user image
           alt="User"
           className="w-full h-full object-cover"
         />

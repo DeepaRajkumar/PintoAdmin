@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin } from 'lucide-react';
-
+import RestaurantList  from './RestaurantList';
+import { useNavigate } from 'react-router-dom';
 const PhoneOrderWithMap = () => {
   const [formData, setFormData] = useState({
     customerName: '',
@@ -17,7 +18,7 @@ const PhoneOrderWithMap = () => {
 
   const [touched, setTouched] = useState({});
   const [errors, setErrors] = useState({});
-
+  const navigate = useNavigate();
   const validateField = (name, value) => {
     switch (name) {
       case 'customerName':
@@ -83,17 +84,20 @@ const PhoneOrderWithMap = () => {
       });
       setTouched(newTouched);
       return;
-    }
-    
+    } 
+
+    navigate("/orders/phone-orders/restaurant-list");
     console.log('Form submitted:', formData);
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr,400px] gap-6">
+    <div className="m-2 "> 
+     
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr,300px] gap-6">
         {/* Form Section */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-xl font-semibold mb-6">Create Phone Order</h2>
+        <div >
+        <h2 className="text-lg font-semibold mt-4 mb-2">Create Phone Order</h2> 
+        <div className=" rounded-lg shadow p-4">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Customer Details */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -164,7 +168,7 @@ const PhoneOrderWithMap = () => {
                   value={formData.doorNo}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full  border rounded-md ${
+                  className={`w-48  border rounded-md ${
                     errors.doorNo && touched.doorNo ? 'border-red-500' : 'border-gray-300'
                   }`}
                 />
@@ -269,7 +273,7 @@ const PhoneOrderWithMap = () => {
                 name="label"
                 value={formData.label}
                 onChange={handleChange}
-                className="w-full  border rounded-md border-gray-300"
+                className="w-32  border rounded-md border-gray-300"
               >
                 <option value="Home">Home</option>
                 <option value="Work">Work</option>
@@ -278,7 +282,7 @@ const PhoneOrderWithMap = () => {
             </div>
 
             {/* Form Actions */}
-            <div className="flex justify-end space-x-4">
+            <div className="flex justify-center space-x-4">
               <button
                 type="button"
                 onClick={() => {
@@ -297,37 +301,36 @@ const PhoneOrderWithMap = () => {
                   setErrors({});
                   setTouched({});
                 }}
-                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+                className="px-4  border border-gray-300 rounded-md text-gray-700 "
               >
                 Clear
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                className="px-4  bg-[#004680] text-white rounded-md "
               >
                 Next
               </button>
             </div>
-          </form>
+          </form> 
+          </div>
         </div>
 
-        {/* Map Section */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold mb-4">Pin Customer Location</h3>
-          <div className="relative w-full h-64 bg-gray-100 rounded-lg mb-4">
+        {/* Map Section */} 
+        
+        <div  >
+          <h3 className="text-lg font-semibold mt-4 mb-2 ">Pin Customer Location</h3>
+          <div className=" rounded-lg shadow">
+          <div className=" w-full h-64 bg-gray-100  mb-4 ">
             <img 
               src="/api/placeholder/400/320" 
               alt="Map placeholder" 
               className="w-full h-full object-cover rounded-lg"
             />
-            {/* Sample map pins */}
-            <div className="absolute top-1/4 left-1/4">
-              <MapPin className="text-red-500" size={24} />
-            </div>
-            <div className="absolute top-1/2 right-1/3">
-              <MapPin className="text-red-500" size={24} />
-            </div>
+            
           </div>
+          </div>
+       
           <div className="text-sm text-gray-600">
             <p className="font-medium">Current Location:</p>
             <p>55 Building, 2nd Thukaram street,</p>

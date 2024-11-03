@@ -26,7 +26,7 @@ const StarRating = ({ rating = 0 }) => {
 };
 function Order() { 
 
-
+  const [isExpanded, setIsExpanded] = useState(true);
 const statusColors = {
   Delivered: "bg-green-100 text-green-700",
   "On the way": "bg-orange-100 text-orange-700",
@@ -229,14 +229,15 @@ const data = orders.map((order, index) => (
  
   return (
     <div className="grid grid-cols-[auto,1fr] h-screen bg-gray-100">
-    <Sidebar />
-    <div className=" overflow-auto" >
+    <Sidebar isExpanded ={isExpanded} setIsExpanded={setIsExpanded}/>
+    <div className=" overflow-auto window-scrollbar" >
       <Header name={"Orders"} />
      
         <div className="p-4" >
           <div className="flex justify-between  gap-6 mt-4 ">
             {stats.map((stat, index) => (
-              <OrderStats
+              <OrderStats 
+                isExpanded={isExpanded}
                 border={stat.border}
                 key={index}
                 color={stat.color}

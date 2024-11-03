@@ -8,7 +8,7 @@ function OrderStats(props) {
  
     <div
     key={props.index}
-    className={`border-2 ${props.border} rounded-lg  py-2 w-44 text-center bg-white`}
+    className={`border-2 ${props.border} rounded-lg  py-2 ${props.isExpanded? `w-48` : `w-44`}  text-center bg-white`}
   >
     <div className={`text-3xl font-bold ${props.color} `}>{props.value}</div>
     <div className="font-bold mt-4 mb-2 text-base text-gray-800 tracking-wider">{props.label}</div>
