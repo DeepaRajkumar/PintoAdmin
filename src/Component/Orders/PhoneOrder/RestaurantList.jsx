@@ -61,7 +61,7 @@ function RestaurantList() {
       <div className="flex-1 overflow-auto p-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {restaurants.map((restaurant, index) => (
-            <div key={index} className=" overflow-hidden ">
+            <div key={index} className=" overflow-hidden " onClick={()=>{ navigate("/orders/phone-orders/specific-restaurant")}}>
               <img
                 src={restaurant.imageUrl}
                 alt={restaurant.name}

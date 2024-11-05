@@ -5,12 +5,14 @@ import { ChevronLeft, Search, Clock, Star, ShoppingCart,Home } from 'lucide-reac
 import { HomeIcon } from '@heroicons/react/24/solid';
 import Rest from "../../../assets/briyani.png"
 import {MagnifyingGlassIcon as SearchIcon,ClockIcon } from '@heroicons/react/24/outline'; 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
+
 function SpecificRestaurant() { 
   const [isExpanded, setIsExpanded] = useState(true); 
   const [cart, setCart] = useState([]); 
   const [value, setValue] = useState(50);
   const [isVeg, setIsVeg] = useState(false); 
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setValue(e.target.value);
   };
@@ -76,7 +78,7 @@ function SpecificRestaurant() {
   }}>
     
         <div className="flex items-center gap-4 p-4">
-        <button className="bg-white text-black px-3 py-1 rounded-md">
+        <button className="bg-white text-black px-3 py-1 rounded-md"  onClick={()=>{ navigate("/orders/phone-orders/restaurant-list")}}>
             Back
           </button>
         
