@@ -44,7 +44,7 @@ function PhoneOrder() {
         <Tail name={"Phone Order"} />
         
           <div className="p-4">
-            <div className="flex justify-between  gap-6 mt-4 ">
+            <div className="flex justify-between  gap-6 mt-2 mb-5 ">
               {stats.map((stat, index) => (
                 <OrderStats 
                 isExpanded={isExpanded}

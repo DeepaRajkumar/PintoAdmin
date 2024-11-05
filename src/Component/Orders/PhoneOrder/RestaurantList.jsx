@@ -33,29 +33,25 @@ function RestaurantList() {
        
           <div className="p-4">
           <div className="flex gap-2">
-            <button className="px-4 py-1 text-sm border rounded-md" onClick={()=>{ navigate("/orders/phone-orders")}}>Back</button>
-            <button className="px-4 py-1 text-sm text-white bg-[#030714] rounded-md">Restaurant</button>
+            <button className="px-4 py-2 text-sm border rounded-lg" onClick={()=>{ navigate("/orders/phone-orders")}}>Back</button>
+            <button className="px-4 py-2 text-sm text-white bg-[#030714] rounded-lg">Restaurant</button>
           </div>
-          <div className="mb-6">
+          <div className="my-6">
           <h2 className="text-lg font-medium mb-3">New Order</h2>
           <div className="flex gap-3">
            
-              <div className="relative">
+              <div className="relative w-72">
                 <SearchIcon className="absolute left-3 top-2 h-5 w-5 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="Search Restaurant"
-                  className="w-full pl-10 pr-4 py-1 border rounded-md"
+                  placeholder="Search Restaurant Name or Id "
+                  className="w-full pl-10 pr-4 py-2 border rounded-lg"
                 />
               </div>
            
-            <input
-              type="text"
-              placeholder="Restaurant ID"
-              className="w-32 px-4 py-1 border rounded-md"
-            />
-            <button className="px-6 py-1 text-white bg-blue-600 rounded-md">
-              View Menu
+            
+            <button className="px-6 py-1 text-white bg-[#004680] rounded-md">
+              View 
             </button>
           </div>
         </div>

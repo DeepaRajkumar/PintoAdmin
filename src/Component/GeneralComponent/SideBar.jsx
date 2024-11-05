@@ -37,7 +37,7 @@ const SideBar = ({isExpanded,setIsExpanded}) => {
     const hasSubmenu = submenu && submenu.length > 0;
     console.log("giuygfffgjhgh",submenu)
     return (
-      <div className="relative mb-4">
+      <div className={`relative ${text=="Dashboard"? '' : "mb-4"}`}>
         <div 
           className={`flex items-center justify-between cursor-pointer hover:bg-[#2B2954] rounded-lg p-2 ${
             location.pathname === to ? 'bg-[#2B2954]' : ''
@@ -192,7 +192,7 @@ const SideBar = ({isExpanded,setIsExpanded}) => {
           className="h-8 w-8" 
         />
         {isExpanded && (
-          <h1 className="ml-2 font-bold text-lg uppercase font-serif tracking-[0.5em]">
+          <h1 className="ml-5 font-bold text-lg uppercase font-serif tracking-[0.5em]">
             PINTO
           </h1>
         )}
@@ -204,7 +204,7 @@ const SideBar = ({isExpanded,setIsExpanded}) => {
         ))}
       </nav>
 
-      <div className="mt-12">
+      <div className="absolute bottom-2">
         <MenuItem 
           icon={LifebuoyIcon} 
           text="Help Center" 

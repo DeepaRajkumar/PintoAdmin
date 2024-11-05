@@ -234,7 +234,7 @@ const data = orders.map((order, index) => (
       <Header name={"Orders"} />
      
         <div className="p-4" >
-          <div className="flex justify-between  gap-6 mt-4 ">
+          <div className="flex justify-between  gap-6 mt-2 mb-4 ">
             {stats.map((stat, index) => (
               <OrderStats 
                 isExpanded={isExpanded}

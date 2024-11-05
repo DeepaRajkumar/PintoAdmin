@@ -111,7 +111,7 @@ const PhoneOrderWithMap = () => {
                   value={formData.customerName}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full  border rounded-md ${
+                  className={`w-full  p-2  border rounded-md ${
                     errors.customerName && touched.customerName ? 'border-red-500' : 'border-gray-300'
                   }`}
                 />
@@ -130,7 +130,7 @@ const PhoneOrderWithMap = () => {
                   value={formData.phoneNumber}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full  border rounded-md ${
+                  className={`w-full  p-2 border rounded-md ${
                     errors.phoneNumber && touched.phoneNumber ? 'border-red-500' : 'border-gray-300'
                   }`}
                 />
@@ -149,7 +149,7 @@ const PhoneOrderWithMap = () => {
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full  border rounded-md ${
+                  className={`w-full  p-2 border rounded-md ${
                     errors.email && touched.email ? 'border-red-500' : 'border-gray-300'
                   }`}
                 />
@@ -168,7 +168,7 @@ const PhoneOrderWithMap = () => {
                   value={formData.doorNo}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-48  border rounded-md ${
+                  className={`w-48  p-2  border rounded-md ${
                     errors.doorNo && touched.doorNo ? 'border-red-500' : 'border-gray-300'
                   }`}
                 />
@@ -190,7 +190,7 @@ const PhoneOrderWithMap = () => {
                   value={formData.streetAddress1}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full  border rounded-md ${
+                  className={`w-full  p-2 border rounded-md ${
                     errors.streetAddress1 && touched.streetAddress1 ? 'border-red-500' : 'border-gray-300'
                   }`}
                 />
@@ -208,7 +208,7 @@ const PhoneOrderWithMap = () => {
                   name="streetAddress2"
                   value={formData.streetAddress2}
                   onChange={handleChange}
-                  className="w-full  border rounded-md border-gray-300"
+                  className="w-full   p-2 border rounded-md border-gray-300"
                 />
               </div>
 
@@ -222,7 +222,7 @@ const PhoneOrderWithMap = () => {
                   value={formData.city}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full  border rounded-md ${
+                  className={`w-full  p-2 border rounded-md ${
                     errors.city && touched.city ? 'border-red-500' : 'border-gray-300'
                   }`}
                 />
@@ -241,7 +241,7 @@ const PhoneOrderWithMap = () => {
                   value={formData.pincode}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  className={`w-full  border rounded-md ${
+                  className={`w-full  p-2  border rounded-md ${
                     errors.pincode && touched.pincode ? 'border-red-500' : 'border-gray-300'
                   }`}
                 />
@@ -261,7 +261,7 @@ const PhoneOrderWithMap = () => {
                 name="landmark"
                 value={formData.landmark}
                 onChange={handleChange}
-                className="w-full  border rounded-md border-gray-300"
+                className="w-full p-2 border rounded-md border-gray-300"
               />
             </div>
 
@@ -273,7 +273,7 @@ const PhoneOrderWithMap = () => {
                 name="label"
                 value={formData.label}
                 onChange={handleChange}
-                className="w-32  border rounded-md border-gray-300"
+                className="w-32  p-2  border rounded-md border-gray-300"
               >
                 <option value="Home">Home</option>
                 <option value="Work">Work</option>
@@ -301,13 +301,13 @@ const PhoneOrderWithMap = () => {
                   setErrors({});
                   setTouched({});
                 }}
-                className="px-4  border border-gray-300 rounded-md text-gray-700 "
+                className=" w-28 px-4  font-medium py-2 border border-gray-300 rounded-md text-gray-700 "
               >
                 Clear
               </button>
               <button
                 type="submit"
-                className="px-4  bg-[#004680] text-white rounded-md "
+                className="w-36 font-medium px-4 py-2  bg-[#004680] text-white rounded-md "
               >
                 Next
               </button>
@@ -319,13 +319,13 @@ const PhoneOrderWithMap = () => {
         {/* Map Section */} 
         
         <div  >
-          <h3 className="text-lg font-semibold mt-4 mb-2 ">Pin Customer Location</h3>
+          <h3 className="text-md font-semibold mt-8 mb-2 ">Pin Customer Location</h3>
           <div className=" rounded-lg shadow">
           <div className=" w-full h-64 bg-gray-100  mb-4 ">
             <img 
               src="/api/placeholder/400/320" 
               alt="Map placeholder" 
-              className="w-full h-full object-cover rounded-lg"
+              className="w-full  h-full object-cover rounded-lg"
             />
             
           </div>

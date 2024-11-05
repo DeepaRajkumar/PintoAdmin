@@ -8,7 +8,7 @@ const HeaderBar = (props) => {
   const formattedDate = new Intl.DateTimeFormat('en-US', options).format(today);
   return ( 
   
-    <div className="flex justify-between items-center bg-white  p-4  overflow-hidden sticky top-0">
+    <div className="flex justify-between items-center bg-white  p-4  overflow-hidden sticky top-0 z-10">
     {/* Left Side: Logo and Orders Text */}
     <div className="flex items-center">
      
@@ -20,7 +20,7 @@ const HeaderBar = (props) => {
       <span className="text-gray-600">{formattedDate}</span>
       <BellIcon className="ml-4 h-6 w-6 text-gray-600  cursor-pointer" />
       <Cog8ToothIcon className="h-6 w-6 text-gray-600 cursor-pointer" />
-      <div className="w-6 h-6 rounded-full overflow-hidden border">
+      <div className="w-8 h-8 rounded-full overflow-hidden border">
         <img
           src="https://engineering.unl.edu/images/staff/Kayla-Person.jpg" // Replace with the actual path to the user image
           alt="User"
