@@ -5,6 +5,8 @@ import Order from "../src/Component/Orders"
 import PhoneOrder from "../src/Component/Orders/PhoneOrder/PhoneOrder" 
 import RestaurantList from "./Component/Orders/PhoneOrder/RestaurantList"; 
 import SpecificRestaurant from "./Component/Orders/PhoneOrder/SpecificRestraurant";
+import ManageScreen from "./Component/Menu" 
+import AddCategory from "./Component/Menu/ManageSecreen/AddCategory";
 import {
     createBrowserRouter,
     RouterProvider,
@@ -30,6 +32,14 @@ import {
       {
         path: "/orders/phone-orders/specific-restaurant",
         element: <SpecificRestaurant/>,
+      }, 
+      {
+        path: "/menu/home-screen",
+        element: <ManageScreen/>,
+      },
+      {
+        path: "/menu/home-screen/manage-screen",
+        element: <AddCategory/>,
       },
      
   ]);

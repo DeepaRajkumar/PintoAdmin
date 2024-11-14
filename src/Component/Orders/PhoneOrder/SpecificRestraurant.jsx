@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import Sidebar from '../../GeneralComponent/SideBar.jsx';
 import Tail from '../../GeneralComponent/HeaderBar.jsx';  
 import { ChevronLeft, Search, Clock, Star, ShoppingCart,Home } from 'lucide-react';
@@ -8,21 +8,8 @@ import {MagnifyingGlassIcon as SearchIcon,ClockIcon } from '@heroicons/react/24/
 import { useNavigate } from 'react-router-dom'; 
 
 function SpecificRestaurant() { 
-  const [isExpanded, setIsExpanded] = useState(true); 
-  const [cart, setCart] = useState([]); 
-  const [value, setValue] = useState(50);
-  const [isVeg, setIsVeg] = useState(false); 
-  const navigate = useNavigate();
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
-  const handleToggle = () => {
-    setIsVeg(!isVeg);
-  };
-  const categories = [
-    "Biryani", "Parotta", "Chicken 65", "Mutton", "Food item", "Food item", "Food item"
-  ]; 
-  const menuItems = [
+
+  const menuItemslist = [
     {
       id: 1,
       name: "Chicken biryani",
@@ -30,7 +17,8 @@ function SpecificRestaurant() {
       time: "40-45 mins",
       price: 299,
       isVeg: false,
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX4CaraJr6aLYYgzhup-CflYDoyXL-r5Fgvg&s"
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX4CaraJr6aLYYgzhup-CflYDoyXL-r5Fgvg&s",
+      item:0
     },
     {
       id: 2,
@@ -39,7 +27,9 @@ function SpecificRestaurant() {
       time: "40-45 mins",
       price: 299,
       isVeg: false,
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX4CaraJr6aLYYgzhup-CflYDoyXL-r5Fgvg&s"
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX4CaraJr6aLYYgzhup-CflYDoyXL-r5Fgvg&s",
+      item:0
+   
     },
     {
       id: 3,
@@ -48,8 +38,10 @@ function SpecificRestaurant() {
       time: "40-45 mins",
       price: 299,
       isVeg: false,
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX4CaraJr6aLYYgzhup-CflYDoyXL-r5Fgvg&s"
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX4CaraJr6aLYYgzhup-CflYDoyXL-r5Fgvg&s",
+      item:0
     },
+   
     {
       id: 4,
       name: "Chicken biryani",
@@ -57,12 +49,52 @@ function SpecificRestaurant() {
       time: "40-45 mins",
       price: 299,
       isVeg: false,
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX4CaraJr6aLYYgzhup-CflYDoyXL-r5Fgvg&s"
-    }
-  ]; 
-  const addToCart = (item) => {
-    setCart([...cart, item]);
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX4CaraJr6aLYYgzhup-CflYDoyXL-r5Fgvg&s",
+      item:0
+    },
+    
+  ];  
+  const [isExpanded, setIsExpanded] = useState(true); 
+  const [cart, setCart] = useState([]); 
+  const [value, setValue] = useState(50);
+  const [isVeg, setIsVeg] = useState(false);  
+  const [totalcount,setTotalCount] =useState(0)
+  const [menuItems,setMenuItems] = useState(menuItemslist)
+  const navigate = useNavigate();
+  const handleChange = (e) => {
+    setValue(e.target.value);
   };
+  const handleToggle = () => {
+    setIsVeg(!isVeg);
+  }; 
+
+  const categories = [
+    "Biryani", "Parotta", "Chicken 65", "Mutton", "Food item", "Food item", "Food item"
+  ]; 
+  const updateTotalCount = (updatedMenuItems) => {
+    const newTotalCount = updatedMenuItems.reduce((count, item) => count + item.item, 0);
+    setTotalCount(newTotalCount);
+  };
+  const addToCart = (index) => {
+    setMenuItems((prevItems) =>
+      prevItems.map((menu, i) => {
+        if (i === index) {
+          const updatedMenu = { ...menu, item: menu.item + 1 };
+          updateTotalCount([...prevItems.slice(0, i), updatedMenu, ...prevItems.slice(i + 1)]);
+          return updatedMenu;
+        }
+        return menu;
+      })
+    );
+  }
+  const decrement = (index) => {  
+    setMenuItems(prevItem=> prevItem.map((menu,i)=> i === index ? { ...menu, item: (menu.item || 0) - 1 } : menu)) 
+  
+  };  
+  const increment = (index) => {  
+    setMenuItems(prevItem=> prevItem.map((menu,i)=> i === index ? { ...menu, item: (menu.item || 0) + 1 } : menu)) 
+  
+  };  
 
   return(
 
@@ -163,34 +195,67 @@ function SpecificRestaurant() {
 
         {/* Menu Items Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {menuItems.map((item) => (
-            <div key={item.id} className=" overflow-hidden">
-              <img
-                src={item.image}
-                alt={item.name}
+          {menuItems.map((item,index) => ( 
+            
+            <div key={item?.id} className=" overflow-hidden">  
+            {console.log("deeeeee",item)}
+            <div className="relative">
+            <img
+                src={item?.image}
+                alt={item?.name}
                 className="w-full h-48 object-cover  rounded-lg"
-              />
+              /> 
+              {
+                item?.item > 0 ?  
+                <div className="absolute top-36 flex items-center gap-4">
+                <button
+                  onClick={decrement(index)}
+                  className="w-10 h-10 rounded-lg bg-red-500 text-white font-bold text-xl hover:bg-red-600 active:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors"
+                >
+                  -
+                </button>
+                
+                <span className="text-2xl font-semibold min-w-[3rem] text-center">
+                  {item?.item}
+                </span>
+                
+                <button
+                  onClick={increment(index)}
+                  className="w-10 h-10 rounded-lg bg-green-500 text-white font-bold text-xl hover:bg-green-600 active:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors"
+                >
+                  +
+                </button>
+              </div>
+                
+               
+          
+                : 
+                <button
+                onClick={() => addToCart(index)}
+                className="px-3 absolute top-36 left-48 py-1 rounded border border-green-600  bg-white"
+              >
+                ADD
+              </button>
+              }
+            
+            </div>
+             
               <div className="p-4">
                 <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-semibold">{item.name}</h3>
-                  <button
-                    onClick={() => addToCart(item)}
-                    className="px-3 py-1 rounded border border-red-600 text-red-600 hover:bg-red-50"
-                  >
-                    ADD
-                  </button>
+                  <h3 className="font-semibold">{item?.name}</h3>
+                  
                 </div>
                 <div className="flex items-center gap-2 text-sm text-gray-600">
                   <div className="flex items-center gap-1">
                     <Star className="h-4 w-4 fill-current text-yellow-400" />
-                    {item.rating}
+                    {item?.rating}
                   </div>
                   <div className="flex items-center gap-1">
                     <Clock className="h-4 w-4 text-green-500" />
-                    {item.time}
+                    {item?.time}
                   </div>
                 </div>
-                <div className="mt-2">₹{item.price}</div>
+                <div className="mt-2">₹{item?.price}</div>
               </div>
             </div>
           ))}
