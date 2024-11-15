@@ -23,7 +23,7 @@ const CategoryCard = ({ image, title, isAdd = false ,categories=[]}) => {
     const navigate = useNavigate();
     if (isAdd) {
       return (
-        <div className="flex flex-col items-center justify-center p-4 border border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50" onClick={()=>{console.log("manage manage home");navigate("/menu/home-screen/manage-screen" , { state: { categories } });}}>
+        <div className="flex flex-col items-center justify-center p-4 border border-dashed max-w-44 min-w-40 max-h-48 border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50" onClick={()=>{console.log("manage manage home");navigate("/menu/home-screen/manage-screen" , { state: { categories } });}}>
           <PlusCircle className="w-12 h-12 text-orange-500 mb-2" />
           <span className="text-sm text-orange-500">Add New</span>
         </div>
@@ -31,11 +31,11 @@ const CategoryCard = ({ image, title, isAdd = false ,categories=[]}) => {
     }
   
     return (
-        <div className="relative flex flex-col items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 group">
+        <div className="relative flex flex-col items-center p-4 border border-gray-200 max-w-44 min-w-40 max-h-48 rounded-lg cursor-pointer hover:bg-gray-50 group">
         <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
           <PenSquare className="w-4 h-4 text-gray-400 hover:text-gray-600" />
         </div> 
-        <img src={image} alt={title} className="w-32 h-32 object-cover mb-2" />
+        <img src={image} alt={title} className="object-fit mb-2" />
         <span className="text-sm">{title}</span>
       </div>
     );
@@ -43,7 +43,7 @@ const CategoryCard = ({ image, title, isAdd = false ,categories=[]}) => {
   const FilterButton = ({ title, isAdd = false }) => {
     if (isAdd) {
       return (
-        <button className="flex items-center gap-2 px-4 py-2 border border-dashed border-gray-300 rounded-lg text-orange-500 bg-white">
+        <button className="flex items-center gap-2 px-8 py-3 border  border-dashed border-gray-300 rounded-lg text-orange-500 bg-white">
           <PlusCircle className="w-4 h-4" />
           Add New
         </button>
@@ -52,7 +52,7 @@ const CategoryCard = ({ image, title, isAdd = false ,categories=[]}) => {
   
     return (
       <div className="relative group">
-        <button className="px-6 py-2 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 w-32 h-32 text-center">
+        <button className="px-8 py-3 bg-white border border-gray-200   rounded-lg hover:bg-gray-50  text-center">
           {title}
         </button>
         <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -97,7 +97,7 @@ function Menu(){
         <div className=" overflow-auto window-scrollbar" >
          <Header name={"Menu"} />
      
-        <div className="p-4" >
+        <div className="p-8" >
         <div className="relative w-80">
             <input
             type="text"
@@ -124,7 +124,7 @@ function Menu(){
               <h2 className="text-lg font-semibold">Category</h2>
               <button className="text-orange-500 text-sm" onClick={()=>{setViewAll(!viewall)}} >View all</button>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="flex flex-row gap-5">
               {viewall&&categories?.length>4? categories: categories?.slice(1, 5).map((category) => ( 
                 <CategoryCard key={category.title} {...category} />
               ))}

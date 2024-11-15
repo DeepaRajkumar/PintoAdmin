@@ -222,16 +222,20 @@ function AddCategory(){
                 Add category
               </button>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="flex flex-wrap gap-5">
               {categories.map((category) => (
-                <div key={category.title} className="relative group">
-                  <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                <div key={category.title} className=" w-40 h-40 relative group  bg-white ">
+                  <div className="absolute  top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                     <PenSquare className="w-4 h-4 text-gray-600 hover:text-gray-800" />
                   </div>
-                  <div className="flex flex-col items-center p-4 border border-gray-200 rounded-lg bg-white hover:shadow-md"> 
-                    {console.log("ppoiiee",category.image)}
-                    <img src={category.image} alt={category.title} className="w-16 h-16 object-cover mb-2" />
-                    <span className="text-sm">{category.title}</span>
+                  <div className="flex flex-col h-full items-center p-4 border border-gray-200 rounded-lg hover:shadow-md"> 
+                    {console.log("ppoiiee",category.image)} 
+                    <div className="grid place-item-center object-fit " >  
+                    <img src={category.image} alt={category.title} />
+                      </div>
+                    
+                    
+                    <span className="text-sm absolute bottom-2">{category.title}</span>
                   </div>
                 </div>
               ))}
