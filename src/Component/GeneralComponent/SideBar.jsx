@@ -35,7 +35,7 @@ const SideBar = ({isExpanded,setIsExpanded}) => {
 
   const MenuItem = ({ icon: Icon, text, to, submenu, menuKey }) => {
     const hasSubmenu = submenu && submenu.length > 0;
-    console.log("giuygfffgjhgh",submenu)
+    // console.log("giuygfffgjhgh",submenu)
     return (
       <div className={`relative ${text=="Dashboard"? '' : "mb-4"}`}>
         <div 

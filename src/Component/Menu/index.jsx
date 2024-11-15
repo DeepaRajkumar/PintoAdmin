@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import Sidebar from '../GeneralComponent/SideBar.jsx';
 import Header from '../GeneralComponent/HeaderBar.jsx'; 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; 
+import axios from 'axios'
 import { 
     Menu as MenuIcon,
     Search,
@@ -63,12 +64,32 @@ const CategoryCard = ({ image, title, isAdd = false ,categories=[]}) => {
 
 function Menu(){ 
     const [isExpanded, setIsExpanded] = useState(true); 
-    const categories = [
-        { title: 'Chicken',image:`${Briyani}` },
-        { title: 'Burger' ,image:`${Briyani}` },
-        { title: 'Pizza',image:`${Briyani}` },
-        { title: 'Chinese' ,image:`${Briyani}`},
-      ]; 
+    const [categories, setCategories] = useState(null); 
+    const [viewall,setViewAll] = useState(false)
+    const getCategory = () => { 
+      console.log("sadfsdds")
+      try {
+        axios.get('https://demo-menu.onrender.com/category'
+        )
+        .then(function (response) {
+          
+          console.log("deeeddd gweeet",response.data.data
+          ); 
+          setCategories(response.data.data) 
+          console.log("deeeddd gwt",categories); 
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      } catch (error) {
+        console.log('error accured')
+      }
+    }
+    useEffect(()=>{
+      console.log("new items new itesm")
+      getCategory()
+    },[]) 
+    
       const filters = ['All', 'Breakfast', 'Lunch', 'Snacks'];
     return (
         <div className="grid grid-cols-[auto,1fr] h-screen bg-gray-100">
@@ -101,10 +122,10 @@ function Menu(){
        <div className="mb-8 mt-4">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold">Category</h2>
-              <button className="text-orange-500 text-sm">View all</button>
+              <button className="text-orange-500 text-sm" onClick={()=>{setViewAll(!viewall)}} >View all</button>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {categories.map((category) => (
+              {viewall&&categories?.length>4? categories: categories?.slice(1, 5).map((category) => ( 
                 <CategoryCard key={category.title} {...category} />
               ))}
               <CategoryCard isAdd={true} categories={categories} />
