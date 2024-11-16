@@ -4,6 +4,7 @@ import Header from '../../GeneralComponent/HeaderBar.jsx';
 import axios from 'axios'
 import { useLocation } from 'react-router-dom'; 
 import { useEffect } from 'react';
+import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { 
     Menu as MenuIcon,
     Search,
@@ -26,7 +27,22 @@ const AddCategoryForm = () => {
   const [title,setTitle] =useState('')
   const [image,setImage] = useState(null) 
   const [imagePreview, setImagePreview] = useState(null); 
-
+  const [cuisines, setCuisines] = useState([
+    "Italian",
+    "Chinese",
+    "Tibetan",
+    "Multi cuisine",
+  ]);   
+  const [dropdownOpen, setDropdownOpen] = useState(false); 
+  const [newCuisine, setNewCuisine] = useState("");
+  const [selectedCuisines, setSelectedCuisines] = useState([]);
+  const toggleDropdown = () => setDropdownOpen((prev) => !prev); 
+  const handleAddCuisine = () => {
+    if (newCuisine.trim() && !cuisines.includes(newCuisine)) {
+      setCuisines((prev) => [...prev, newCuisine]);
+      setNewCuisine("");
+    }
+  };
   useEffect(() => {
     console.log("Updated image:", image);
   }, [image])
@@ -41,7 +57,8 @@ const AddCategoryForm = () => {
       { id: 'beef', label: 'Beef' }
     ]; 
     
-    const handleSubmit=()=>{ 
+    const handleSubmit=(e)=>{  
+      e.preventDefault();
       const formData = new FormData(); 
       formData.append('title', title); 
       console.log("newly adedd image heree",image)
@@ -57,7 +74,8 @@ const AddCategoryForm = () => {
         },
       })
       .then(function (response) {
-        console.log(response); 
+        console.log(response);  
+        
        
       })
       .catch(function (error) {
@@ -74,7 +92,13 @@ const AddCategoryForm = () => {
       setImagePreview(URL.createObjectURL(file)); // Create a preview URL for the image
     }
   };
-
+  const handleCheckboxChange = (cuisine) => {
+    setSelectedCuisines((prev) =>
+      prev.includes(cuisine)
+        ? prev.filter((item) => item !== cuisine)
+        : [...prev, cuisine]
+    );
+  };
   // Remove the selected image
   const handleRemoveImage = () => {
     setImage(null);
@@ -91,7 +115,7 @@ const AddCategoryForm = () => {
              id ="title"
             type="text" 
             placeholder="Biryani" 
-            className="border border-gray-300 rounded-lg px-3 py-2 w-64" 
+            className="border border-gray-300 rounded-lg px-3 py-2 w-54" 
             values = {title}
              onChange={(e)=>{setTitle(e.target.value)}}
           />
@@ -101,10 +125,67 @@ const AddCategoryForm = () => {
           <label className="block text-sm mb-2">Add sub category</label>
           <input 
             type="text" 
-            placeholder="Type and click Enter to add" 
-            className="border border-gray-300 rounded-lg px-3 py-2 w-96"
+            placeholder="Enter to add" 
+            className="border border-gray-300 rounded-lg px-3 py-2 w-56"
           />
+        </div> 
+        <div className="mb-6 ml-12 ">
+          <label className="block text-sm mb-2 w-40">Select Cuisine</label> 
+         
+       <div className="flex border rounded px-2 py-1 justify-between cursor-pointer">
+          <div
+       
+       
+      >
+        {selectedCuisines.length > 0
+          ? selectedCuisines[0]
+          : "Select Cuisine"} 
+           
+      </div>  
+      <div>
+      <ChevronDownIcon
+       onClick={toggleDropdown}
+          className={`h-4 w-4 transform transition-transform m-2 duration-200 ${
+            dropdownOpen ? "rotate-180" : ""
+          }`}
+        />
+      </div> 
+      </div>
+      {dropdownOpen && (
+        <div className="absolute z-10 border bg-white shadow-lg mt-1 w-40 rounded">
+          <div className="p-2">
+            {cuisines.map((cuisine) => (
+              <div
+                key={cuisine}
+                className="flex items-center space-x-2 mb-1"
+              >
+                <input
+                  type="checkbox"
+                  checked={selectedCuisines.includes(cuisine)}
+                  onChange={() => handleCheckboxChange(cuisine)}
+                />
+                <label>{cuisine}</label>
+              </div>
+            ))}
+            <hr className="my-2" />
+            
+            <input
+    type="text"
+    className=" w-36  "
+    placeholder="Add new cuisine"
+    value={newCuisine}
+    onChange={(e) => setNewCuisine(e.target.value)}
+    onKeyDown={(e) => {
+      if (e.key === "Enter") {
+        handleAddCuisine(); // Call the add function on Enter key
+      }
+    }}
+  />
+            
+          </div>
         </div>
+      )}
+        </div> 
         </div>
        
   
@@ -157,7 +238,7 @@ const AddCategoryForm = () => {
         <div className="flex flex-row items-end space-x-4 m-8">
   <button className="bg-red-500 text-white px-4 py-2 rounded-lg">Delete</button>
   <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg">Cancel</button>
-  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg" onClick={handleSubmit()}>Submit</button>
+  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg" onClick={handleSubmit}>Submit</button>
 </div>
       </div>
         </div>
@@ -240,11 +321,30 @@ function AddCategory(){
                 </div>
               ))}
             </div> 
-            {showAddForm?  
-              
-              <div className="overflow-auto">
-                <AddCategoryForm />
-              </div>
+            {showAddForm?   
+
+<div class="relative z-10 " aria-labelledby="modal-title" role="dialog" aria-modal="true">
+
+<div class="fixed inset-0 bg-gray-500/75 transition-opacity" aria-hidden="true"></div>
+
+<div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+  <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+  
+    <div class="relative w-3/5 transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all ">
+    <button
+                onClick={() => setShowAddForm(show => !show)}
+                className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+              >
+                ✕
+              </button>
+      <div >
+     <AddCategoryForm/>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+             
            
             
         :''}
