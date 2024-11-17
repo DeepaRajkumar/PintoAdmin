@@ -7,7 +7,9 @@ import RestaurantList from "./Component/Orders/PhoneOrder/RestaurantList";
 import SpecificRestaurant from "./Component/Orders/PhoneOrder/SpecificRestraurant";
 import ManageScreen from "./Component/Menu" 
 import AddCategory from "./Component/Menu/ManageSecreen/Categoty/ShowCategory"; 
-import ShowFilter from "./Component/Menu/ManageSecreen/QuickFilter/ShowFilter"
+import ShowFilter from "./Component/Menu/ManageSecreen/QuickFilter/ShowFilter" 
+import AddCategoryForm  from "./Component/Menu/ManageSecreen/Categoty/AddCategoryForm"; 
+import AddFilterForm from "./Component/Menu/ManageSecreen/QuickFilter/AddFilterForm";
 import {
     createBrowserRouter,
     RouterProvider,
@@ -45,6 +47,14 @@ import {
       {
         path: "/menu/home-screen/quick-filter",
         element: <ShowFilter/>,
+      },
+      {
+        path: "/menu/home-screen/add-categoty-form",
+        element: <AddCategoryForm/>,
+      },
+      {
+        path: "/menu/home-screen/add-filter-form",
+        element: <AddFilterForm/>,
       },
   ]);
   export default router

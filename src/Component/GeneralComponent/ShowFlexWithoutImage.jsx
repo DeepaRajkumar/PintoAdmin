@@ -38,7 +38,7 @@ import {
               {props.title}
             </button>
             <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">  
-                {props.edit?   <PenSquare className="w-4 h-4 text-gray-400 hover:text-gray-600 cursor-pointer" /> : 
+                {props.edit?   <PenSquare className="w-4 h-4 text-gray-400 hover:text-gray-600 cursor-pointer" onClick={()=>{props.setSub? props.setSub(props.title) : ''}} /> : 
                 ''
     
                 }
