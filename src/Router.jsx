@@ -6,7 +6,8 @@ import PhoneOrder from "../src/Component/Orders/PhoneOrder/PhoneOrder"
 import RestaurantList from "./Component/Orders/PhoneOrder/RestaurantList"; 
 import SpecificRestaurant from "./Component/Orders/PhoneOrder/SpecificRestraurant";
 import ManageScreen from "./Component/Menu" 
-import AddCategory from "./Component/Menu/ManageSecreen/AddCategory";
+import AddCategory from "./Component/Menu/ManageSecreen/Categoty/ShowCategory"; 
+import ShowFilter from "./Component/Menu/ManageSecreen/QuickFilter/ShowFilter"
 import {
     createBrowserRouter,
     RouterProvider,
@@ -41,6 +42,9 @@ import {
         path: "/menu/home-screen/manage-screen",
         element: <AddCategory/>,
       },
-     
+      {
+        path: "/menu/home-screen/quick-filter",
+        element: <ShowFilter/>,
+      },
   ]);
   export default router

@@ -1,7 +1,8 @@
 import React, {useState,useEffect} from 'react';
 import Sidebar from '../GeneralComponent/SideBar.jsx';
 import Header from '../GeneralComponent/HeaderBar.jsx'; 
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';  
+import ShowFlexWithoutImage from "../GeneralComponent/ShowFlexWithoutImage.jsx"
 import axios from 'axios'
 import { 
     Menu as MenuIcon,
@@ -18,9 +19,10 @@ import {
     Bell,
     PenSquare
   } from 'lucide-react'; 
-  import Briyani from "../../assets/briyani.png"
+  import Briyani from "../../assets/briyani.png" 
+  
 const CategoryCard = ({ image, title, isAdd = false ,categories=[]}) => { 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
     if (isAdd) {
       return (
         <div className="flex flex-col items-center justify-center p-4 border border-dashed max-w-44 min-w-40 max-h-48 border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50" onClick={()=>{console.log("manage manage home");navigate("/menu/home-screen/manage-screen" , { state: { categories } });}}>
@@ -40,32 +42,13 @@ const CategoryCard = ({ image, title, isAdd = false ,categories=[]}) => {
       </div>
     );
   }; 
-  const FilterButton = ({ title, isAdd = false }) => {
-    if (isAdd) {
-      return (
-        <button className="flex items-center gap-2 px-8 py-3 border  border-dashed border-gray-300 rounded-lg text-orange-500 bg-white">
-          <PlusCircle className="w-4 h-4" />
-          Add New
-        </button>
-      );
-    }
-  
-    return (
-      <div className="relative group">
-        <button className="px-8 py-3 bg-white border border-gray-200   rounded-lg hover:bg-gray-50  text-center">
-          {title}
-        </button>
-        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-          <PenSquare className="w-4 h-4 text-gray-400 hover:text-gray-600 cursor-pointer" />
-        </div>
-      </div>
-    );
-  };
+
 
 function Menu(){ 
     const [isExpanded, setIsExpanded] = useState(true); 
-    const [categories, setCategories] = useState(null); 
-    const [viewall,setViewAll] = useState(false)
+    const [categories, setCategories] = useState([]); 
+    const [viewall,setViewAll] = useState(false) 
+    const navigate = useNavigate();
     const getCategory = () => { 
       console.log("sadfsdds")
       try {
@@ -122,7 +105,7 @@ function Menu(){
        <div className="mb-8 mt-4">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-lg font-semibold">Category</h2>
-              <button className="text-orange-500 text-sm" onClick={()=>{setViewAll(!viewall)}} >View all</button>
+              <button className="text-orange-500 text-sm" onClick={()=>{console.log("manage manage home");navigate("/menu/home-screen/manage-screen" , { state: { categories } });}} >View all</button>
             </div>
             <div className="flex flex-row gap-5">
               {viewall&&categories?.length>4? categories: categories?.slice(1, 5).map((category) => ( 
@@ -139,10 +122,15 @@ function Menu(){
               <button className="text-orange-500 text-sm">View all</button>
             </div>
             <div className="flex gap-4 flex-wrap">
-              {filters.map((filter) => (
-                 <FilterButton key={filter} title={filter} />
+              {filters.map((filter) => (  
+                <ShowFlexWithoutImage key={filter} title={filter}  
+                edit={true}/>
+
+                
               ))}
-              <FilterButton isAdd={true} />
+              <ShowFlexWithoutImage isAdd={true}  
+              click={()=>{navigate("/menu/home-screen/quick-filter" , { state: { categories } });}}
+              />
             </div>
           </div>
 

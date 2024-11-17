@@ -68,7 +68,7 @@ function Dashboard() {
         
         <div className="p-6 space-y-8">
           {/* Metrics Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
             {summaryMetrics.map((section, idx) => ( 
               <div className="relative bg-white rounded-lg p-4 shadow-md">
               {/* Floating Circle Icon */}

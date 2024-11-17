@@ -12,7 +12,8 @@ const HeaderBar = (props) => {
     {/* Left Side: Logo and Orders Text */}
     <div className="flex items-center">
      
-      <h1 className="text-lg font-medium">{props.name}</h1>
+      <h1 className="text-lg font-medium" onClick={()=>{props.click? props.click() : ''
+      }}>{props.name}</h1>
     </div>
   
     {/* Right Side: Date, Notification, Settings, User Image */}
