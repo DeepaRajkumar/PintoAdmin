@@ -20,25 +20,37 @@ import {
     PenSquare
   } from 'lucide-react'; 
   import Briyani from "../../assets/briyani.png" 
+  import Spot from"../../assets/banner.jpg" 
+  import Editpencil from "../../assets/vector.png"
   
-const CategoryCard = ({ image, title, isAdd = false ,categories=[]}) => { 
+const CategoryCard = ({ image, title,style, isAdd = false ,add=false ,categories=[]}) => { 
   const navigate = useNavigate();
     if (isAdd) {
       return (
         <div className="flex flex-col items-center justify-center p-4 border border-dashed w-40 h-40 border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50" onClick={()=>{console.log("manage manage home");navigate("/menu/home-screen/add-categoty-form" , { state: { categories } });}}>
-          <PlusCircle className="w-6 h-6 text-orange-500 mb-2" />
-          <span className="text-md text-orange-500">Add New</span>
+          
+          { add?
+          <div>
+            <PlusCircle className="w-6 h-6 text-orange-500 mb-2" />   
+            <span className="text-md text-orange-500">Add New</span> 
+            </div> :
+           <img src={Editpencil}  /> 
+          }
+         
         </div>
       );
     }
   
     return (
-        <div className="relative flex flex-col items-center p-4 border border-gray-200 w-40 h-40 rounded-lg cursor-pointer hover:bg-gray-50 group">
+        <div className={`relative flex flex-col items-center p-4 border border-gray-200 ${style?  style:"w-40 h-40"} rounded-lg cursor-pointer hover:bg-gray-50 group`}>
         <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
           <PenSquare className="w-4 h-4 text-gray-400 hover:text-gray-600" onClick={()=>{}} />
         </div> 
-        <img src={image} alt={title} className="object-fit mb-2" />
-        <span className="text-sm">{title}</span>
+        <img src={image} alt={title} className="object-fit mb-2" /> 
+        {title&&
+         <span className="text-sm">{title}</span>
+        }
+        
       </div>
     );
   }; 
@@ -112,7 +124,7 @@ function Menu(){
               {viewall&&categories?.length>4? categories: categories?.slice(1, 5).map((category) => ( 
                 <CategoryCard key={category.title} {...category} />
               ))}
-              <CategoryCard isAdd={true} categories={categories} />
+              <CategoryCard add={true} isAdd={true} categories={categories} />
             </div>
           </div> 
 
@@ -134,7 +146,22 @@ function Menu(){
               />
             </div>
           </div>
+                {/* city spotlight */} 
+                <div className="mb-8">
+            <div className="flex justify-between items-center mb-4">
+            
+              <h2 className="text-lg font-semibold">City Spotlight</h2>
+              <button className="text-orange-500 text-sm" onClick={()=>{console.log("manage manage home");navigate("/menu/home-screen/quick-filter" , { state: { categories } });}} >View all</button>
+            </div>
+            <div className="flex gap-4 flex-wrap">
+              {filters.map((filter) => (  
+                 <CategoryCard image={Spot} style="w-44 w-32" />
 
+                
+              ))}
+            <CategoryCard style="w-44 w-32" isAdd={true} />
+            </div>
+          </div>
         </div>
         </div> 
         </div>
