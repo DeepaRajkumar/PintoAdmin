@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid'; 
 import AddCategoryForm from './AddCategoryForm.jsx'; 
+import { useNavigate } from 'react-router-dom'; 
 import ShowFlexElements from '../../../GeneralComponent/ShowFlexElement.jsx';
 import { 
     Menu as MenuIcon,
@@ -33,6 +34,7 @@ function ShowCategory(){
     const [categories, setCategories] = useState([]) 
     const [categoryName, setCategoryName]=useState('')
     const location = useLocation(); 
+    const navigate = useNavigate();
     // const categories = location.state?.categories || [];  
     const getCategory = () => {
       try {
@@ -63,11 +65,11 @@ function ShowCategory(){
         <Sidebar isExpanded ={isExpanded} setIsExpanded={setIsExpanded}/>  
         <div className=" overflow-auto window-scrollbar" >
          <Header name={"Back"}  
-         click= {()=>{showAddForm?setShowAddForm(prev=>!prev):''}}
+         click= {()=>navigate("/menu/home-screen" , { state: { categories } })}
          /> 
          <div className="p-6">
          
-          {showAddForm?  <AddCategoryForm/>   : 
+         
           <div>   
               <div className="relative mb-8"> 
               <h2 className="text-lg font-semibold">Category</h2> 
@@ -81,7 +83,7 @@ function ShowCategory(){
            <Search className="w-5 h-5 absolute left-3 top-10 text-gray-400" />
                </div>
              <button 
-               onClick={() => setShowAddForm(true)}
+               onClick={() =>navigate("/menu/home-screen/add-categoty-form" , { state: { categories } })}
                className="px-4 py-2 bg-green-600 text-white rounded-lg"
              >
                Add category
@@ -97,7 +99,7 @@ function ShowCategory(){
                category={category}  
                bottomName={true}
                edit={true} 
-               setSub={()=>{setCategoryName}} />
+               setSub={(title)=>{setCategoryName(title)}} />
               ))}
             </div >   
 
@@ -129,7 +131,7 @@ function ShowCategory(){
           </div> 
             </div>
         
-}   
+
         </div>
      </div> 
      </div>

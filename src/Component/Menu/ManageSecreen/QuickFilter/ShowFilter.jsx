@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid'; 
 import ShowFlexElements from '../../../GeneralComponent/ShowFlexElement.jsx';
 import ShowFlexWithoutImage from '../../../GeneralComponent/ShowFlexWithoutImage.jsx'; 
+import { useNavigate } from 'react-router-dom';  
 import AddFilterForm from "./AddFilterForm.jsx"
 import { 
     Menu as MenuIcon,
@@ -54,17 +55,17 @@ import {
       console.log("new items new itesm")
       getCategory()
     },[]) 
-    
+    const navigate = useNavigate(); 
     return(
         <div className="grid grid-cols-[auto,1fr] h-screen bg-gray-100"> 
         <Sidebar isExpanded ={isExpanded} setIsExpanded={setIsExpanded}/>  
         <div className=" overflow-auto window-scrollbar" >
          <Header name={"Back"}  
-         click= {()=>{showAddForm? setShowAddForm(prev=>!prev) : ''}   }
+         click= {()=>{navigate("/menu/home-screen") }   }
          /> 
          <div className="p-6">
          
-          {showAddForm? < AddFilterForm/>  : 
+        
           <div>   
               <div className="relative mb-8"> 
               <h2 className="text-lg font-semibold">Quick Filter</h2> 
@@ -79,7 +80,7 @@ import {
 
                     </div>
               <button 
-                onClick={() => setShowAddForm(true)}
+                onClick={()=>{navigate("/menu/home-screen/add-filter-form" , { state: { categories } });}}
                 className="px-4 py-2 bg-green-600 text-white rounded-lg"
               >
                 Add New Filter
@@ -94,7 +95,7 @@ import {
                <ShowFlexWithoutImage 
                key ={category.title}
                title={category.title}  
-               setSub={setCategoryName} 
+               setSub={(title)=>setCategoryName(title)} 
                edit = {true}
                 />
               ))}
@@ -127,7 +128,7 @@ import {
           </div> 
             </div>
         
-}   
+  
         </div>
      </div> 
      </div>

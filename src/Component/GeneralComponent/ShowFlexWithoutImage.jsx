@@ -26,15 +26,15 @@ import {
             <> 
             {
         props.isAdd? 
-        <button className="flex items-center gap-2 px-8 py-3 border  border-dashed border-gray-300 rounded-lg text-orange-500 bg-white" onClick={props.click?()=>{props.click()}  : ''} >
-        <PlusCircle className="w-4 h-4" />
+        <button className="flex items-center gap-2 px-8 py-3 border  border border-orange-300 rounded-lg bg-white" onClick={()=>{{props.setSub?props.setSub(props?.category?.title) : ''}}} >
+        <PlusCircle className="w-4 h-4  text-orange-500" />
         Add New 
       </button>
         
       : 
       
             <div className="relative group">
-            <button key= {props.key?props.key : ''} className="px-8 py-3 bg-white border border-gray-200   rounded-lg hover:bg-gray-50  text-center">
+            <button key= {props.key?props.key : ''} className="px-8 py-3 bg-white border border-gray-200   rounded-lg hover:bg-gray-50  text-center"  onClick={()=>{props.setSub? props.setSub(props.title) : ''}} >
               {props.title}
             </button>
             <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">  

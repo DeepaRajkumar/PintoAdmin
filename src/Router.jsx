@@ -6,14 +6,17 @@ import PhoneOrder from "../src/Component/Orders/PhoneOrder/PhoneOrder"
 import RestaurantList from "./Component/Orders/PhoneOrder/RestaurantList"; 
 import SpecificRestaurant from "./Component/Orders/PhoneOrder/SpecificRestraurant";
 import ManageScreen from "./Component/Menu" 
-import AddCategory from "./Component/Menu/ManageSecreen/Categoty/ShowCategory"; 
+import ShowCategory from "./Component/Menu/ManageSecreen/Categoty/ShowCategory"; 
 import ShowFilter from "./Component/Menu/ManageSecreen/QuickFilter/ShowFilter" 
 import AddCategoryForm  from "./Component/Menu/ManageSecreen/Categoty/AddCategoryForm"; 
-import AddFilterForm from "./Component/Menu/ManageSecreen/QuickFilter/AddFilterForm";
+import AddFilterForm from "./Component/Menu/ManageSecreen/QuickFilter/AddFilterForm"; 
+import ShowSpotLight from "./Component/Menu/ManageSecreen/SpotLight/ShowSpotLight"; 
+
 import {
     createBrowserRouter,
     RouterProvider,
   } from "react-router-dom"; 
+import ShowPopularDish from "./Component/Menu/ManageSecreen/PopularDish/ShowPopularDish";
 
   const router = createBrowserRouter([
     {
@@ -42,7 +45,7 @@ import {
       },
       {
         path: "/menu/home-screen/manage-screen",
-        element: <AddCategory/>,
+        element: <ShowCategory/>,
       },
       {
         path: "/menu/home-screen/quick-filter",
@@ -55,6 +58,14 @@ import {
       {
         path: "/menu/home-screen/add-filter-form",
         element: <AddFilterForm/>,
+      }, 
+      {
+        path: "/menu/home-screen/show-spot-light",
+        element: <ShowSpotLight/>,
+      },
+      {
+        path: "/menu/home-screen/show-popular-dish",
+        element: <ShowPopularDish/>,
       },
   ]);
   export default router

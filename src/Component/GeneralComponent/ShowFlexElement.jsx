@@ -18,9 +18,9 @@ import {
   } from 'lucide-react'; 
  const ShowFlexElements = (props)=>{  
     return( 
-        <div>
+        <div onClick={()=>{props.setSub?props.setSub(props?.category?.title) : ''}}>  
             {props.topName&&
-                  <span className="text-sm">{props.category.title}</span>
+                  <span className="text-sm mb-4">{props.category.title}</span>
             } 
        
              <div key={props?.category?.title} className= {`${props.style?props.style: "w-40 h-40"}  relative group  bg-white border border-gray-200 rounded-lg hover:shadow-md`}>
