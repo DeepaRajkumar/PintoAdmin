@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react';
 import Sidebar from '../GeneralComponent/SideBar.jsx';
 import Header from '../GeneralComponent/HeaderBar.jsx'; 
 import { useNavigate } from 'react-router-dom';  
-import ShowFlexWithoutImage from "../GeneralComponent/ShowFlexWithoutImage.jsx"
+import ShowFlexWithoutImage from "../GeneralComponent/ShowFlexWithoutImage.jsx";
 import axios from 'axios'
 import { 
     Menu as MenuIcon,
@@ -20,9 +20,9 @@ import {
     PenSquare
   } from 'lucide-react'; 
   import Briyani from "../../assets/briyani.png" 
-  import Spot from"../../assets/banner.jpg"  
-  import Phone from "../../assets/Phone.png"
-  import Editpencil from "../../assets/vector.png"
+  import Spot from"../../assets/banner.jpg";
+  import Phone from "../../assets/Phone.png";
+  import Editpencil from "../../assets/Vector.png";
   import CategoryCard from '../GeneralComponent/CategoryCard.jsx';
 
 
