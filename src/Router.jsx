@@ -11,6 +11,7 @@ import ShowFilter from "./Component/Menu/ManageSecreen/QuickFilter/ShowFilter"
 import AddCategoryForm  from "./Component/Menu/ManageSecreen/Categoty/AddCategoryForm"; 
 import AddFilterForm from "./Component/Menu/ManageSecreen/QuickFilter/AddFilterForm"; 
 import ShowSpotLight from "./Component/Menu/ManageSecreen/SpotLight/ShowSpotLight"; 
+import ShowCuisine from "./Component/Menu/ManageSecreen/Cuisine/ShowCuisine"
 
 import {
     createBrowserRouter,
@@ -66,6 +67,10 @@ import ShowPopularDish from "./Component/Menu/ManageSecreen/PopularDish/ShowPopu
       {
         path: "/menu/home-screen/show-popular-dish",
         element: <ShowPopularDish/>,
+      },
+      {
+        path: "/menu/home-screen/show-cuisine",
+        element: <ShowCuisine/>,
       },
   ]);
   export default router

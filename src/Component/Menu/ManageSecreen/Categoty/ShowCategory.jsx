@@ -99,7 +99,7 @@ function ShowCategory(){
                category={category}  
                bottomName={true}
                edit={true} 
-               setSub={(title)=>{setCategoryName(title)}} />
+               setSub={()=>{setCategoryName(category.title)}} />
               ))}
             </div >   
 

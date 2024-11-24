@@ -246,7 +246,8 @@ const AddCategoryForm = () => {
         </div>
        
   
-        <div className="border border-dashed border-gray-300 rounded-lg p-8 w-64 flex flex-col items-center justify-center cursor-pointer hover:bg-gray-50">
+        <div className="border border-dashed border-gray-300 rounded-lg p-8 w-64 flex flex-col items-center justify-center cursor-pointer hover:bg-gray-50"> 
+          
       {/* Upload icon */} 
       <input
         type="file"
@@ -295,7 +296,7 @@ const AddCategoryForm = () => {
             ))} 
           </div> */} 
            <div className="grid grid-cols-4 gap-4">
-      {foodData.map((item, index) => (
+          {foodData.map((item, index) => (
         <div
           key={index}
           
@@ -305,10 +306,10 @@ const AddCategoryForm = () => {
           onDrop={(event) => handleDrop(event, index)}
         >  
          <div style={{ display: 'flex', alignItems: 'center' }}>
-  <span className="ml-2"><img src={Group} /></span>
-  <span className="ml-2">{item.category}</span>
-  <span className="ml-2" onClick={()=>handleRemoveItem(index)}>x</span>
-</div>
+            <span className="ml-2"><img src={Group} /></span>
+            <span className="ml-2">{item.category}</span>
+            <span className="ml-2" onClick={()=>handleRemoveItem(index)}>x</span>
+        </div>
           <img src={item.image} alt={item.category} className="border w-44 h-40"/>
           
         </div>

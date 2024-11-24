@@ -30,6 +30,7 @@ import {
 function Menu(){ 
     const [isExpanded, setIsExpanded] = useState(true); 
     const [categories, setCategories] = useState([]); 
+    const [cuisine, setCusine]  = useState([]);
     const [viewall,setViewAll] = useState(false) 
     const navigate = useNavigate(); 
     
@@ -47,7 +48,20 @@ function Menu(){
         })
         .catch(function (error) {
           console.log(error);
-        });
+        });  
+        axios.get('http://127.0.0.1:8000/menu/cuisine'
+        )
+        .then(function (response) {
+          
+          console.log("cusine cusine",response.data.contacts
+          ); 
+          setCusine(response.data.contacts) 
+          console.log("deeeddd gwt",cusine); 
+        })
+        .catch(function (error) {
+          console.log(error);
+        }); 
+
       } catch (error) {
         console.log('error accured')
       }
@@ -217,12 +231,12 @@ function Menu(){
             <div className="flex justify-between items-center mb-4">
             
               <h2 className="text-lg font-semibold">Cuisine</h2>
-              <button className="text-orange-500 text-sm" onClick={()=>{console.log("manage manage home");navigate("/menu/home-screen/quick-filter" , { state: { categories } });}} >View all</button>
+              <button className="text-orange-500 text-sm" onClick={()=>{console.log("manage manage home7788");navigate("/menu/home-screen/show-cuisine" , { state: { cuisine } });}} >View all</button>
             </div>
             <div className="flex gap-4 flex-wrap">
-              {filters.map((filter) => (  
-                 <CategoryCard image={"https://s3-alpha-sig.figma.com/img/7968/b050/a3d16c6e21382f8d8b89846a0a6e2687?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NcAcx36fMtd2Ysp86BmOL0TGqYuwAx7MVqXv8S1hH5yYs-uDQ0oaZW2ufMVZ3yzatnjszk5FlTVGd~Fop~YMSh058Qqcx0hzBObpIau8fYRYYGecav25tn4HgagPdkCP1cnfrTuFyfCtXfOdjAuRytcd3DpcXi2Wk9kBXnYJJj3JcWhj3rbbWaE3-lSaR4OlE6-lOCFZfdUoDyofpm0iLLWb~-A7-jsBdVzgJhgCVeFID0BbjAeGSR-hMkchR~LzNzGh2ZSeFrfVXRQPLIe9upxRHsrv7jA12hkKiOiSidTFwkVECuU7JrMYJ~6I4EPEZ92G-2ZQ-yZZicYS1si9cA__"} style="w-32 h-32 mb-3"
-                 imagestyle="w-32 h-32 border rounded-lg" bottomtitle={"Indian"} />
+              {cuisine.map((cusine) => (  
+                 <CategoryCard image={cusine.image} style="w-32 h-32 mb-3"
+                 imagestyle="w-32 h-32 border rounded-lg" bottomtitle={cusine.name} />
 
                 
               ))}
