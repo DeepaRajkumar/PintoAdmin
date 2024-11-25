@@ -53,9 +53,9 @@ function Menu(){
         )
         .then(function (response) {
           
-          console.log("cusine cusine",response.data.contacts
+          console.log("cusine cusine",response.data
           ); 
-          setCusine(response.data.contacts) 
+          setCusine(response.data) 
           console.log("deeeddd gwt",cusine); 
         })
         .catch(function (error) {
@@ -113,6 +113,7 @@ function Menu(){
               <CategoryCard add={true} isAdd={true} categories={categories} />
             </div>
           </div> 
+          
              {/* Quick Filter */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-4">

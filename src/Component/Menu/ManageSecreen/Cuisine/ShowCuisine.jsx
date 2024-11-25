@@ -184,9 +184,9 @@ function ShowCategory(){
         )
         .then(function (response) {
           
-          console.log("deeeddd gweeet",response.data.contacts
+          console.log("deeeddd gweeet",response.data
           ); 
-          setCuisine(response.data.contacts) 
+          setCuisine(response.data) 
           console.log("deeeddd gwt",cuisine); 
         })
         .catch(function (error) {
