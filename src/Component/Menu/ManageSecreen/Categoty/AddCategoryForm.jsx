@@ -94,7 +94,7 @@ const AddCategoryForm = () => {
       console.log("sadfsdsds",selectedCuisineIds)
       e.preventDefault();
       const formData = new FormData(); 
-      formData.append('title', formState.title); 
+      formData.append('category_title', formState.title); 
       formData.append('cuisine_ids',selectedCuisineIds)
       
       if(formState.image){formData.append('image', formState.image)}
