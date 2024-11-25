@@ -180,7 +180,7 @@ function ShowCategory(){
  
     const getCategory = () => {
       try {
-        axios.get('https://demo-menu.onrender.com/cuisine'
+        axios.get('http://127.0.0.1:8000/menu/cuisine'
         )
         .then(function (response) {
           
