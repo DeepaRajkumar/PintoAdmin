@@ -106,6 +106,8 @@ import {
             type="text" 
             placeholder="Enter to add" 
             className="border border-gray-300 rounded-lg px-3 py-2 w-56"
+            values = {formState.title}
+            onChange={(e)=> setFormState((prevState) => ({ ...prevState, title: e.target.value }))}
           />   
           <div className="mt-4">
 
