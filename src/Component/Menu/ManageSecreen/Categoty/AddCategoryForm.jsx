@@ -37,12 +37,13 @@ const AddCategoryForm = () => {
   });
   
   const [newCuisine,setNewCuisine] = useState('') 
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(true); 
+  const [selectedCuisineIds, setSelectedCuisineIds] = useState([]);
   const [cuisines, setCuisines] = useState([
-    "Italian",
-    "Chinese",
-    "Tibetan",
-    "Multi cuisine",
+    {id:1,title:"Italian"},
+    {id:2,title:"Chinese"},
+    {id:3,title:"Tibetan"},
+    {id:4,title:"Multi cuisine"},
   ]);   
   const [foodData, setFoodData] = useState([
     { category: 'Chicken', image: 'https://s3-alpha-sig.figma.com/img/6098/fff6/7dcb319919603d8def17d8cb2c597605?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FGicRm5NDOw0TIYSFVRdmxASqvL76Zsbe~2glKhAawrH5ABm1p1H5Bza-dnCcwgxlNrfH2yyKmDYJgjzsvyl1yfFw23Bg6t1dk95sUgZ60qz-Nm3bfVEfz8sGCyVYq3NJMs~RR2SU08KCese2uf6-uH-prQ5XfmYZtD5AhMWZkulYzMrbedU16IadPbNWpIWPSApjEI2NQ0o07Okx62Tqeg-zfjKSOZKBYFAYFkQCskvzsaqGhuhynMJOnCLwtEnv8nOxgSK~FsgvIfF8Kc8CHcrDlHbAb7YJ1zMlRN4PS3uMoLmR~2L28rOGXL3ky1oQzRWNfbeMaiw3s6wPK2q6g__' },
@@ -89,16 +90,18 @@ const AddCategoryForm = () => {
       { id: 'beef', label: 'Beef' }
     ]; 
     
-    const handleSubmit=(e)=>{  
+    const handleSubmit=(e)=>{   
+      console.log("sadfsdsds",selectedCuisineIds)
       e.preventDefault();
       const formData = new FormData(); 
       formData.append('title', formState.title); 
+      formData.append('cuisine_ids',selectedCuisineIds)
       
       if(formState.image){formData.append('image', formState.image)}
 
     
 
-      axios.post('https://demo-menu.onrender.com/create/category', formData, {
+      axios.post('http://127.0.0.1:8000/menu/category', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -111,7 +114,8 @@ const AddCategoryForm = () => {
           selectedCuisines: [],
           dropdownOpen: false,
           imagePreview: null,
-        });
+        }); 
+        setSelectedCuisineIds([])
        
       })
       .catch(function (error) {
@@ -135,24 +139,43 @@ const AddCategoryForm = () => {
     updatedData.splice(index, 1);
     setFoodData(updatedData);
   };
-  const handleCheckboxChange = (value,key = "selectedCuisines") => { 
-    setFormState((prev) => {  
-      if (key === "selectedCuisines") {
-        return {
-          ...prev,
-          selectedCuisines: prev.selectedCuisines.includes(value)
-            ? prev.selectedCuisines.filter((item) => item !== value)
-            : [...prev.selectedCuisines, value],
-        };
+  const handleCheckboxChange = (value,  key = "selectedCuisines") => { 
+    console.log("uuuuu",value)
+    setFormState((prev) => {
+      const updatedSelectedCuisines =
+        key === "selectedCuisines"
+          ? prev.selectedCuisines.includes(value.title)
+            ? prev.selectedCuisines.filter((item) => item !== value.title)
+            : [...prev.selectedCuisines, value.title]
+          : prev.selectedCuisines;
+  
+      // Update both states
+     
+  
+      return {
+        ...prev,
+        selectedCuisines: updatedSelectedCuisines,
+      };
+    }); 
+    setSelectedCuisineIds((prevIds) => {
+      const isAlreadySelected = prevIds.includes(value.id);
+      if (isAlreadySelected) {
+        // Remove ID if it's already selected
+        return prevIds.filter((itemId) => itemId !== value.id);
+      } else {
+        // Append ID if it's not already selected
+        return [...prevIds, value.id];
       }
-
     });
+
+    console.log("dddddd",selectedCuisineIds)
   };
   // Remove the selected image
   const handleRemoveImage = () => {
     setImage(null);
     setImagePreview(null);
-  };
+  }; 
+  console.log("dddddd4444",selectedCuisineIds)
     return (  
       <div className="grid grid-cols-[auto,1fr] h-screen bg-gray-100"> 
       <Sidebar isExpanded ={isExpanded} setIsExpanded={setIsExpanded}/>  
@@ -213,15 +236,15 @@ const AddCategoryForm = () => {
           <div className="p-2">
             {cuisines.map((cuisine) => (
               <div
-                key={cuisine}
+                key={cuisine.id}
                 className="flex items-center space-x-2 mb-1"
               >
                 <input
                   type="checkbox"
-                  checked={formState.selectedCuisines.includes(cuisine)}
+                  checked={formState.selectedCuisines.includes(cuisine.title)}
                   onChange={() => handleCheckboxChange(cuisine)}
                 />
-                <label>{cuisine}</label>
+                <label>{cuisine.title}</label>
               </div>
             ))}
             <hr className="my-2" />
