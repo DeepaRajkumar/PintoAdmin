@@ -149,7 +149,8 @@ const SideBar = ({isExpanded,setIsExpanded}) => {
       submenu: [
         { text: "Home Screen", to: "/menu/home-screen" },
         { text: "Explore Screen" },
-        { text: "Quick Search" }
+        { text: "Quick Search" },
+        {text:"Restaurant Item",to:"/menu/restaurant-item"},
       ]
     },
     { 

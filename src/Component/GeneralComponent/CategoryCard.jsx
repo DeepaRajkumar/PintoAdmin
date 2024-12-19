@@ -14,7 +14,8 @@ import {
     Bell,
     PenSquare
   } from 'lucide-react'; 
-const CategoryCard = ({ image, title,style,imagestyle,bottomtitle,textonimage,AdditonalText="", editImage="",editName="", isAdd = false ,add=false ,categories=[]}) => { 
+const CategoryCard = ({ image, title,style,imagestyle,bottomtitle,textonimage,AdditonalText="", editImage="",editName="", isAdd = false ,add=false ,categories=[]}) => {  
+  console.log("asdfeews",categories)
     const navigate = useNavigate();
       if (isAdd) {
         return (

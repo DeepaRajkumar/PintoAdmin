@@ -2,11 +2,10 @@ import React, {useState} from 'react';
 import Sidebar from '../../../GeneralComponent/SideBar.jsx';
 import Header from '../../../GeneralComponent/HeaderBar.jsx'; 
 import axios from 'axios'
-import { useLocation } from 'react-router-dom'; 
+import { useLocation,useNavigate } from 'react-router-dom'; 
 import { useEffect } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid'; 
 import AddCategoryForm from './AddCategoryForm.jsx'; 
-import { useNavigate } from 'react-router-dom'; 
 import ShowFlexElements from '../../../GeneralComponent/ShowFlexElement.jsx';
 import { 
     Menu as MenuIcon,
@@ -28,37 +27,45 @@ import {
  
 
 
-function ShowCategory(){ 
+function ShowCategory(){  
+    const location = useLocation(); 
+    const navigate = useNavigate(); 
     const [isExpanded, setIsExpanded] = useState(true); 
     const [showAddForm, setShowAddForm] = useState(false); 
-    const [categories, setCategories] = useState([]) 
-    const [categoryName, setCategoryName]=useState('')
-    const location = useLocation(); 
-    const navigate = useNavigate();
+    const [categories, setCategories] = useState(location?.state?.categories|| []) 
+    const [categoryName, setCategoryName]=useState('') 
+    const [singleCategory,setSinlgeCategory] = useState({})
+  
+   console.log("dasdewesfasdf",categoryName,categories)
+     const handleSubcategory =(singleCat,categories) =>{ 
+      setCategoryName(singleCat.category_title) 
+      setSinlgeCategory(singleCat)
+   
+     }
     // const categories = location.state?.categories || [];  
-    const getCategory = () => {
-      try {
-        axios.get('https://demo-menu.onrender.com/category'
-        )
-        .then(function (response) {
+    // const getCategory = () => {
+    //   try {
+    //     axios.get('https://demo-menu.onrender.com/category'
+    //     )
+    //     .then(function (response) {
           
-          console.log("deeeddd gweeet",response.data.data
-          ); 
-          setCategories(response.data.data) 
-          console.log("deeeddd gwt",categories); 
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-      } catch (error) {
-        console.log('error accured')
-      }
-    }
-    useEffect(()=>{
-      console.log("new items new itesm")
-      getCategory()
-    },[]) 
-    console.log("categgggg",categories)
+    //       console.log("deeeddd gweeet",response.data.data
+    //       ); 
+    //       setCategories(response.data.data) 
+    //       console.log("deeeddd gwt",categories); 
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    //   } catch (error) {
+    //     console.log('error accured')
+    //   }
+    // }
+    // useEffect(()=>{
+    //   console.log("new items new itesm")
+    //   getCategory()
+    // },[]) 
+    // console.log("categgggg",categories)
     // console.log("asdfasdfsdfs,categories",categories)
     return(
         <div className="grid grid-cols-[auto,1fr] h-screen bg-gray-100"> 
@@ -99,7 +106,9 @@ function ShowCategory(){
                category={category}  
                bottomName={true}
                edit={true} 
-               setSub={()=>{setCategoryName(category.title)}} />
+               title={category.category_title}
+               setSub={()=>{handleSubcategory(category,categories)}} 
+               onEdit={()=>{navigate("/menu/home-screen/add-categoty-form" , { state: { category,categories } })}} />
               ))}
             </div >   
 
@@ -108,9 +117,10 @@ function ShowCategory(){
                  <h2 className="text-lg font-semibold">Sub Categories in {categoryName} </h2>  
                     <div className="border border-gray-200 rounded-lg">  
                      <div className="flex flex-wrap gap-4  m-4"> 
-                     {categories.map((category) => (
+                     {singleCategory.subcategories?.map((subcategory) => (
                     <ShowFlexElements 
-                    category={category}  
+                    category={subcategory}  
+                    title={subcategory.subcategory_title}
                     topName={true} 
                     style={"w-36 h-30"}
                     />

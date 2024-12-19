@@ -23,7 +23,7 @@ import {
   import Spot from"../../assets/banner.jpg";
   import Phone from "../../assets/Phone.png";
   import Editpencil from "../../assets/Vector.png";
-  import CategoryCard from '../GeneralComponent/CategoryCard.jsx';
+import CategoryCard from '../GeneralComponent/CategoryCard.jsx';
 
 
 
@@ -37,19 +37,19 @@ function Menu(){
     const getCategory = () => { 
       console.log("sadfsdds")
       try {
-        axios.get('https://demo-menu.onrender.com/category'
+        axios.get('http://139.5.189.164/menu/category'
         )
         .then(function (response) {
           
-          console.log("deeeddd gweeet",response.data.data
+          console.log("deeeddd gweeet",response.data
           ); 
-          setCategories(response.data.data) 
+          setCategories(response.data) 
           console.log("deeeddd gwt",categories); 
         })
         .catch(function (error) {
           console.log(error);
         });  
-        axios.get('http://127.0.0.1:8000/menu/cuisine'
+        axios.get('http://127.0.0.1/menu/cuisine'
         )
         .then(function (response) {
           
@@ -64,7 +64,37 @@ function Menu(){
 
       } catch (error) {
         console.log('error accured')
-      }
+      }  
+      try {
+        axios.get('http://127.0.0.1/menu/cuisine'
+        )
+        .then(function (response) {
+          
+          console.log("all the restaurant restaurant",response.data.data
+          ); 
+          setCategories(response.data.data) 
+          console.log("deeeddd gwt",categories); 
+        })
+        .catch(function (error) {
+          console.log(error);
+        });  
+        axios.get('http://127.0.0.1/menu/cuisine'
+        )
+        .then(function (response) {
+          
+          console.log("cusine cusine",response.data
+          ); 
+          setCusine(response.data) 
+          console.log("deeeddd gwt",cusine); 
+        })
+        .catch(function (error) {
+          console.log(error);
+        }); 
+
+      } catch (error) {
+        console.log('error accured')
+      } 
+
     }
     useEffect(()=>{
       console.log("new items new itesm")
@@ -72,7 +102,9 @@ function Menu(){
     },[]) 
     
       const filters = ['All', 'Breakfast', 'Lunch', 'Snacks'];
-    return (
+    return ( 
+      <> 
+      {console.log("come on come on")}
         <div className="grid grid-cols-[auto,1fr] h-screen bg-gray-100">
         <Sidebar isExpanded ={isExpanded} setIsExpanded={setIsExpanded}/>  
         <div className=" overflow-auto window-scrollbar" >
@@ -106,9 +138,13 @@ function Menu(){
               <h2 className="text-lg font-semibold">Category</h2>
               <button className="text-orange-500 text-sm" onClick={()=>{console.log("manage manage home");navigate("/menu/home-screen/manage-screen" , { state: { categories } });}} >View all</button>
             </div>
-            <div className="flex flex-row gap-5">
-              {viewall&&categories?.length>4? categories: categories?.slice(1, 5).map((category) => ( 
-                <CategoryCard key={category.title} {...category} />
+            <div className="flex flex-row gap-5">  
+            
+              {viewall&&categories?.length>4? categories: categories?.slice(0, 5).map((category) => ( 
+                
+                <CategoryCard key={category.category_id} {...category}
+                
+                title= {category.category_title}/>
               ))}
               <CategoryCard add={true} isAdd={true} categories={categories} />
             </div>
@@ -265,7 +301,8 @@ function Menu(){
           </div> 
         </div>
         </div> 
-        </div>
+        </div> 
+        </>
         )
 }
 export default Menu;
